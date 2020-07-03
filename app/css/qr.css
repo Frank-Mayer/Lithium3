@@ -1,0 +1,65 @@
+#qrButton {
+  position: absolute;
+  right: 16px;
+  top: 32px;
+}
+
+#qrButton,
+#qrButton svg {
+  width: 25px;
+  height: 25px;
+}
+
+#qrButton svg,
+#qrButton svg * {
+  fill: var(--Accent)
+}
+
+#qrScan {
+  position: absolute;
+  width: 100%;
+  top: calc(100% + 50px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  text-align: center;
+  z-index: 10;
+  background-color: var(--Gray5);
+  -webkit-border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+  border: 0px solid #00000000;
+  -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
+  color: var(--accent);
+  transition: 0.25s;
+}
+
+#qrScan b {
+  text-align: center;
+  font-size: 18px;
+}
+
+#connectHashTxt {
+  word-wrap: break-word;
+  font-size: 18px;
+  width: 100%;
+  height: 36px;
+  background-color: transparent;
+  color: var(--Accent);
+}
+
+#qrCode {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  border: 8px solid #ffffff;
+  margin: 16px;
+}
+
+#qrScan .header {
+  text-align: left;
+  margin: 16px;
+}

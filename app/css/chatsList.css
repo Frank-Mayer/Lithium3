@@ -1,0 +1,62 @@
+.chats {
+  background-color: var(--Gray6);
+  position: absolute;
+  padding: 16px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: all ease 0.25s;
+}
+
+.chats.layer2 {
+  background-color: var(--Gray5);
+  top: 0;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  -webkit-border-radius: 10px 10px 0px 0px;
+  -moz-border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
+  border: 0px solid #00000000;
+}
+
+.chats.layer2 * {
+  opacity: 0.25;
+}
+
+.chatList {
+  margin-top: 8px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 0px solid #00000000;
+}
+
+.chatList:hover {
+  background-color: var(--Gray5);
+}
+
+.chatList.nofification {
+  border: 2px solid var(--color);
+}
+
+.chatList img {
+  width: 75px;
+  height: 75px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  background-attachment: center;
+  background-size: cover;
+}
+
+.chatList b {
+  font-size: 24px;
+  margin: auto;
+}
+
+.chats h1 {
+  font-size: 42px;
+  margin: 16px 0;
+}

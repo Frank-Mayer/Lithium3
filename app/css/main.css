@@ -1,0 +1,70 @@
+:root {
+  --color: var(--Blue);
+  --header-hight: 40px;
+}
+
+button {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 0;
+}
+
+*:focus,
+* {
+  outline: none;
+  box-shadow: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+*:not(textarea):not(input):not(#connectHashTxt) {
+  outline: none;
+  overflow: hidden;
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */
+}
+
+html,
+body {
+  overflow: hidden;
+  background-color: #000000;
+}
+
+* {
+  font-family: sans-serif;
+  color: var(--Accent);
+  padding: 0;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.back svg,
+.back svg * {
+  fill: var(--color);
+}
+
+.back svg {
+  width: var(--header-hight);
+}
+
+hr {
+  border: 1px solid var(--Gray3);
+  border-radius: 2px;
+}

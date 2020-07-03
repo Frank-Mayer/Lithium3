@@ -1,0 +1,12 @@
+img.emoji {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+}
+
+@media only screen and (min-width: 1000px) {
+  img.emoji {
+    height: 28px;
+    width: 28px;
+  }
+}
