@@ -1,0 +1,50 @@
+html,
+body {
+    background-color: var(--Gray6);
+}
+
+img {
+    width: 50%;
+    max-width: 500px;
+    max-height: 35%;
+    display: block;
+    margin: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#message {
+    padding: 32px;
+}
+
+p,
+a {
+    font-size: 18px;
+}
+
+a {
+    display: unset;
+    margin: 16px;
+    position: relative;
+    color: var(--Accent);
+    text-decoration: none;
+    width: auto;
+}
+
+a::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--Accent);
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+a:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}

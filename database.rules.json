@@ -4,6 +4,9 @@
     ".write": "auth != null",
     "usrHash": {
       ".read": true
+    },
+    "salt": {
+      ".read": true
     }
   }
 }
