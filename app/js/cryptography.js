@@ -37,11 +37,14 @@ var cryptography = new class {
     return retVal;
   }
 
-  getChatPwd() {
+  getChatPwd(chat = "") {
+    if (chat.length === 0) {
+      chat = viewingChat;
+    }
     let pwd = "";
     for (let key in localDB.chats) {
       let el = localDB.chats[key];
-      if (el.name === viewingChat) {
+      if (el.name === chat) {
         pwd = this.decrypt(el.key, localDB.usrPwd);
         break;
       }

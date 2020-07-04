@@ -35,6 +35,7 @@ class Ui {
       chatsView.classList = "chats layer2";
       chatname.innerHTML = String(user.name);
       chat.style.setProperty("top", "16px");
+      document.getElementById("msgText").focus();
     }
     catch (e) {
       console.error(e);

@@ -11,7 +11,7 @@ class Notify {
   }
   show(data) {
     if (Notification.permission === 'denied') {
-      alert(data.text)
+      alert(cryptography.decrypt(data.text, cryptography.getChatPwd(data.sender)))
       return;
     }
     if (Notification.permission === 'default') {
@@ -19,7 +19,7 @@ class Notify {
       });
     }
     let notification = new Notification(data.sender, {
-      "body": data.text
+      "body": cryptography.decrypt(data.text, cryptography.getChatPwd(data.sender))
     });
   }
 }
