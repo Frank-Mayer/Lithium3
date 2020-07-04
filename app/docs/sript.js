@@ -9,24 +9,24 @@ if (String(document.readyState) !== 'loading') {
 }
 
 function main() {
-  function hideAll() {
+  function tab(index) {
     let content = document.getElementsByClassName("content")
     for (let i = 0; i < content.length; i++) {
-      content[i].style.opacity = "0"
+      content[i].classList = (index === i ? "content" : "content invis");
     }
   }
   document.getElementById("b1").addEventListener("click", () => {
-    hideAll();
-    document.getElementById("p1").style.opacity = "1";
+    tab(0)
   });
   document.getElementById("b2").addEventListener("click", () => {
-    hideAll();
-    document.getElementById("p2").style.opacity = "1";
+    tab(1)
   });
   document.getElementById("b3").addEventListener("click", () => {
-    hideAll();
-    document.getElementById("p3").style.opacity = "1";
+    tab(2)
   });
-  hideAll();
-  document.getElementById("p1").style.opacity = "1";
+  tab(1);
+}
+
+function scr(id) {
+  document.getElementById(id).scrollIntoView(true);
 }
