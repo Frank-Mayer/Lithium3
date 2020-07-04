@@ -29,7 +29,7 @@ Math.isPrime = async function (p) {
   }
   let boundary = Math.bigIntSqrt(n);
   for (let i = 3n; i <= boundary; i += 2n) {
-    if (n % i == 0n) {
+    if (n % i === 0n) {
       return false;
     }
   }
@@ -48,7 +48,7 @@ Math.nthPrime = async function (n) {
   if (n < 1n) {
     throw "n can't be smaller than one.";
   }
-  if (n == 1n) {
+  if (n === 1n) {
     return 2n;
   }
   let i = 3n;
