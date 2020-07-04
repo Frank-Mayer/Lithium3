@@ -78,7 +78,41 @@ var userEvents = new class {
       ui.registerPwdErrorReset();
     }
   }
+
+  async regUsrUpdate() {
+    if (register) {
+      let usrNamErrorSpan = document.getElementById("usrNamErrorSpan");
+      let userName = document.getElementById("userName");
+      let usrName = userName.value;
+      let valid = true;
+      let invalidChar = '\0';
+      console.clear();
+      console.log(usrName);
+      for (let i in usrName) {
+        let char = usrName[i];
+        console.log(char)
+        if (!database.allowedCharacters.includes(char)) {
+          valid = false;
+          invalidChar = char;
+          break;
+        }
+      }
+      if (valid) {
+        usrNamErrorSpan.classList = "";
+        usrNamErrorSpan.innerText = "Username";
+      }
+      else {
+        usrNamErrorSpan.classList = "error";
+        usrNamErrorSpan.innerText = "Invalid character " + invalidChar;
+      }
+    }
+    else {
+      usrNamErrorSpan.classList = "";
+      usrNamErrorSpan.innerText = "Username";
+    }
+  }
 }
+
 
 var pwdChangeTimeCache = new Date();
 var pwdCache = "";
