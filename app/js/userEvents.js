@@ -40,7 +40,7 @@ var userEvents = new class {
 
       document.getElementById("qrButton").addEventListener("click", async () => {
         document.getElementById("qrCode").style.visibility = "hidden";
-        document.getElementById("connectHashTxt").value = 'Generating...';
+        document.getElementById("connectHashTxt").value = 'Generating...\tThis could take a view Seconds';
         ui.openQr();
         setTimeout(async () => { await diffiehellman.init(); }, 1500);
       });

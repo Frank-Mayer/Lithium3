@@ -43,6 +43,7 @@
 }
 
 #connectHashTxt {
+  text-align: center;
   word-wrap: break-word;
   font-size: 18px;
   width: 100%;

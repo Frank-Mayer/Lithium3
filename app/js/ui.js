@@ -116,6 +116,7 @@ class Ui {
   }
 
   drawQrCode(str) {
+    let data = 'https://lithium3.web.app#' + str;
     let codeSize = window.innerWidth;
     if (window.innerHeight < codeSize) {
       codeSize = (window.innerHeight / 2);
@@ -127,7 +128,7 @@ class Ui {
     qrCode.style.marginLeft = 'calc(50% - ' + String((codeSize + 16) / 2) + 'px)';
     qrCode.style.marginRight = 'calc(50% - ' + String((codeSize + 16) / 2) + 'px)';
     let qrCodeImg = new QRCode("qrCode", {
-      text: 'https://lithium3.web.app#' + str,
+      text: data,
       width: codeSize,
       height: codeSize,
       colorDark: "#000000",
@@ -135,7 +136,7 @@ class Ui {
       correctLevel: QRCode.CorrectLevel.H
     });
     document.getElementById("qrCode").style.visibility = "visible";
-    document.getElementById("connectHashTxt").value = str;
+    document.getElementById("connectHashTxt").value = data;
   }
 
   alert(str, error = false) {
