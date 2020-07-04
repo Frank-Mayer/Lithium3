@@ -5,18 +5,27 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Test</title>
-    <script defer src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script>
+
     <script defer src="js/aes.js"></script>
     <script defer src="js/aes-ctr.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            document.body.innerHTML = 'All loaded!';
+            document.body.innerHTML += 'All loaded!';
+            console.log('All loaded!');
         });
+        function meep(file) {
+            console.log('Test1');
+            files = file.files;
+            var reader = new FileReader();
+            var binary = files[0].readAsBinaryString();
+            console.log(binary);
+        }
     </script>
 </head>
 
 <body>
-    <input type="file">
+    <input type="file" id="files" name="file" oninput="meep(this)" />
+
 </body>
 
 </html>
