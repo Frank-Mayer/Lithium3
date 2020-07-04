@@ -5,7 +5,7 @@ class Ui {
   chats = void (0);
   chatsView = void (0);
   chatname = void (0);
-  drawMsgHistory = [];
+  drawMsgHistory = new Array();
 
   constructor() {
     this.chatHistory = document.getElementById("chatHistory");
@@ -23,6 +23,7 @@ class Ui {
 
   openChat(user) {
     try {
+      this.drawMsgHistory = new Array();
       document.getElementById("chat_" + user.name).classList = "chatList";
       chatHistory.innerHTML = "";
       viewingChat = user.name;
