@@ -126,7 +126,7 @@ class Ui {
     qrCode.style.marginLeft = 'calc(50% - ' + String((codeSize + 16) / 2) + 'px)';
     qrCode.style.marginRight = 'calc(50% - ' + String((codeSize + 16) / 2) + 'px)';
     let qrCodeImg = new QRCode("qrCode", {
-      text: 'https://whistleblower-messenger.web.app#' + str,
+      text: 'https://lithium3.web.app#' + str,
       width: codeSize,
       height: codeSize,
       colorDark: "#000000",

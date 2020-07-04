@@ -18,8 +18,7 @@ class Notify {
       });
     }
     let notification = new Notification(data.sender, {
-      "body": data.text,
-      "icon": 'https://whistleblower-messenger.web.app/img/symbols/030-server.svg'
+      "body": data.text
     });
   }
 }
