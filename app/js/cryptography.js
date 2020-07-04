@@ -27,16 +27,6 @@ var cryptography = new class {
     return AesCtr.decrypt(AesCtr.decrypt(atob(str), pwd, 256), pwd, 256);
   }
 
-  generatePassword(l = 32) {
-    let length = l;
-    let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"§$%&/()=?+#'";
-    let retVal = "";
-    for (let i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal;
-  }
-
   generateDBKey() {
     let length = 8;
     let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
