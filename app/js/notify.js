@@ -11,6 +11,7 @@ class Notify {
   }
   show(data) {
     if (Notification.permission === 'denied') {
+      alert(data.text)
       return;
     }
     if (Notification.permission === 'default') {
