@@ -59,6 +59,7 @@ class Ui {
   closeQr() {
     chatsView.classList = "chats";
     document.getElementById("qrScan").style.setProperty("top", "calc(100% + 50px)");
+    // diffiehellman.listener.off();
   }
 
   drawMsg(drawInfo) {

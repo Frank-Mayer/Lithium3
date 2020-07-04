@@ -33,6 +33,7 @@ var diffiehellman = new class {
             "key": await cryptography.encrypt(key, localDB.usrPwd)
           });
           this.listener.off();
+          this.listener = void (0);
           firebase.database().ref("dhKeyExchange/" + exchange).remove()
             .then(function () {
               console.log("Remove succeeded.")
