@@ -63,17 +63,19 @@
     <div onclick='window.open("../");' class="mobile demo" title="Lithium3 Web App">
       Try it out now &#187;
     </div>
-    <p>Neither the developer nor a hacker has access to your messages. You do not pass any personal data about yourself
-      into this app. All you need is your username and password and you're safe on the go.</p>
+    <h3>Why should I use it?</h3>
+    <p>Neither the developer, the goverment nor a hacker can access your messages.
+      You do not pass any personal data about yourself into this app.
+      All you need is your username and password and you're safe on the go.</p>
     <p>With your login, you can access your messages from anywhere without having to download any software.
       Lithium3 runs completely in the browser,
-      and every calculation is done by your device so that it never has to be sent online.
+      and every calculation is done by your device so that no encryption key can be catched.
     </p>
   </div>
 
   <div class="content" id="p2">
-    <h1>How does it work?</h1>
-    <h1>Everything is explained here</h1>
+    <h1>Do you want the technical details?</h1>
+    <h1>Here you get a detailed explanation of how everything works</h1>
     <br><br>
     <ul>
       <h2>Contents</h2>
@@ -90,21 +92,27 @@
       <br>
       <div>
         <h3>Username</h3>
-        <p>When a user name is entered, it is checked whether it contains characters that cannot be written to the
+        <p>When a username is entered, it is checked whether it contains characters that cannot be written to the
           database. If this is the case, an error message is displayed above the input field, which tells the user
-          which
-          character he should remove.</p>
+          which character he should remove. Each user name must be unique.</p>
       </div>
       <div>
         <h3>Password</h3>
-        <p>The password is first checked to see if it has eight digits. If this is the case, a request is sent to
-          the
-          API of <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> whether the password is listed there or
-          not. For this purpose, the first five characters of the SHA-1 hash are sent, the server returns the rest,
+        <p>The password is first checked to see if it is eight digits long.
+          If this is the case, a request is sent to the API of
+          <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> whether the password is listed there or not.</p>
+        <p>This API offers a list of leaked passwords. Every password in this list has to be regarded as insecure,
+          since we have to assume that a hacker also has access to these leaked passwords.</p>
+        <p>For this purpose, the first five characters of the SHA-1 hash of your chosen password are sent,
+          the server then returns every hash startig with the given five characters,
           which then will be compared to the hash of the password entered by the user.</p>
-        <p>The API offers a list of leaked passwords. Every password in this list has to be regarded as insecure,
-          since
-          we have to assume that a hacker also has access to these leaked passwords.</p>
+        <p>If your chosen password is eight digits long and not in the leaked database, it is secure. </p>
+      </div>
+      <div>
+        <h3>Write new account to the database</h3>
+        <p>A doubled SHA-512 hash is created using a combination of your username, password and a random salt.
+          The salt comes from the database and is used to safeguard passwords in storage by increasing the amount of
+          entropy.</p>
       </div>
     </div>
     <div id="login">

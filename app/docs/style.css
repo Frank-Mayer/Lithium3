@@ -39,6 +39,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  font-size: 32px;
 }
 
 .content {
@@ -47,6 +48,7 @@ body {
   left: 16px;
   right: 16px;
   padding-top: 364px;
+  padding-bottom: 16px;
   overflow-x: hidden;
   overflow-y: visible;
   background-position: right 64px;
@@ -72,7 +74,7 @@ ul li {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1120px) {
   .content {
     background-size: 400px;
     right: 128px;
@@ -91,6 +93,14 @@ ul li {
   background-image: url(../img/illustrations/undraw_open_source_1qxw.svg);
 }
 
+@media only screen and (max-width: 500px) {
+  .content {
+    background-color: transparent;
+    background-image: unset !important;
+    padding-top: 128px;
+  }
+}
+
 p,
 a,
 li {
@@ -100,6 +110,15 @@ li {
   line-height: 24px;
 }
 
+h1 {
+  font-size: 40px;
+  margin: 8px 0;
+}
+
+h3 {
+  line-height: 32px;
+}
+
 .menu {
   width: 100%;
   position: fixed;
@@ -107,14 +126,14 @@ li {
   top: 0;
   right: 0;
   left: 0;
-  background-color: rgba(199, 199, 204, 0.5);
+  background-color: rgba(199, 199, 204, 0.75);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 @media (prefers-color-scheme: dark) {
   .menu {
-    background-color: rgba(72, 72, 74, 0.5);
+    background-color: rgba(72, 72, 74, 0.75);
   }
 }
 
@@ -127,11 +146,6 @@ li {
 @media only screen and (max-width: 525px) {
   .desktop {
     display: none !important;
-  }
-
-  .mobile.demo {
-    display: inline-block !important;
-    float: none !important;
   }
 }
 
@@ -151,6 +165,7 @@ table {
 }
 
 .desktop.demo {
+  margin-left: 32px;
   float: right;
   --scale: 0.3;
   height: calc(1920px * var(--scale));
@@ -163,12 +178,11 @@ table {
 }
 
 .mobile.demo {
-  float: right;
   margin: 16px;
   cursor: pointer;
   padding: 16px;
   font-size: 24px;
-  display: block;
+  display: inline-block;
   background: linear-gradient(to bottom right, var(--Blue), var(--Indigo));
   color: var(--Accent);
   border: 0px none transparent;
