@@ -59,69 +59,78 @@
     <br><br>
     <p>The focus of this web app is entirely on security and privacy.</p>
     <br>
-    <embed src="../index.html" class="demo desktop">
-    <div onclick='window.open("../");' class="mobile demo" title="Lithium3 Web App">Try it out now &#187;</div>
-    <div class="content" id="p2">
-      <h1>How does it work?</h1>
-      <h1>Everything is explained here</h1>
-      <br><br>
-      <ul>
-        <h2>Contents</h2>
-        <li onclick='scr("register")'>Registration</li>
-        <li onclick='scr("login")'>Login</li>
-        <li onclick='scr("keyExchange")'>Key exchange</li>
-        <li onclick='scr("encryption")'>Message encryption</li>
-      </ul>
-      <div id="register">
-        <h2>Registration</h2>
-        <br>
-        <div>
-          <h3>Username</h3>
-          <p>When a user name is entered, it is checked whether it contains characters that cannot be written to the
-            database. If this is the case, an error message is displayed above the input field, which tells the user
-            which
-            character he should remove.</p>
-        </div>
-        <div>
-          <h3>Password</h3>
-          <p>The password is first checked to see if it has eight digits. If this is the case, a request is sent to
-            the
-            API of <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> whether the password is listed there or
-            not. For this purpose, the first five characters of the SHA-1 hash are sent, the server returns the rest,
-            which then will be compared to the hash of the password entered by the user.</p>
-          <p>The API offers a list of leaked passwords. Every password in this list has to be regarded as insecure,
-            since
-            we have to assume that a hacker also has access to these leaked passwords.</p>
-        </div>
+    <embed src="../index.html" class="demo desktop"></embed>
+    <div onclick='window.open("../");' class="mobile demo" title="Lithium3 Web App">
+      Try it out now &#187;
+    </div>
+    <p>Neither the developer nor a hacker has access to your messages. You do not pass any personal data about yourself
+      into this app. All you need is your username and password and you're safe on the go.</p>
+    <p>With your login, you can access your messages from anywhere without having to download any software.
+      Lithium3 runs completely in the browser,
+      and every calculation is done by your device so that it never has to be sent online.
+    </p>
+  </div>
+
+  <div class="content" id="p2">
+    <h1>How does it work?</h1>
+    <h1>Everything is explained here</h1>
+    <br><br>
+    <ul>
+      <h2>Contents</h2>
+      <li onclick='scr("register")'>Registration</li>
+      <li onclick='scr("login")'>Login</li>
+      <li onclick='scr("keyExchange")'>Key exchange</li>
+      <li onclick='scr("encryption")'>Message encryption</li>
+    </ul>
+    <div id="register">
+      <h2>Registration</h2>
+      <br>
+      <div>
+        <h3>Username</h3>
+        <p>When a user name is entered, it is checked whether it contains characters that cannot be written to the
+          database. If this is the case, an error message is displayed above the input field, which tells the user
+          which
+          character he should remove.</p>
       </div>
-      <div id="login">
-
-      </div>
-      <div id="keyExchange">
-
-        <div id="encryption">
-
-        </div>
+      <div>
+        <h3>Password</h3>
+        <p>The password is first checked to see if it has eight digits. If this is the case, a request is sent to
+          the
+          API of <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> whether the password is listed there or
+          not. For this purpose, the first five characters of the SHA-1 hash are sent, the server returns the rest,
+          which then will be compared to the hash of the password entered by the user.</p>
+        <p>The API offers a list of leaked passwords. Every password in this list has to be regarded as insecure,
+          since
+          we have to assume that a hacker also has access to these leaked passwords.</p>
       </div>
     </div>
+    <div id="login">
 
-    <div class="content" id="p3">
-      <h1>Credits</h1>
-      <h1></h1>
-      <br><br>
-      <p>AES JavaScript Implementation by <a target="_blank"
-          href="https://www.movable-type.co.uk/scripts/aes.html">Chris
-          Veness</a></p>
-      <p>
-        Icons made by <a target="_blank" href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
-        from
-        <a target="_blank" href="https://www.flaticon.com/" title="Flaticon"> flaticon.com</a></p>
-      <p>Illustrations from <a target="_blank" href="https://undraw.co">unDraw</a></p>
-      <p>Parallax Background by <a target="_blank" href="https://linkedin.com/in/saranshsinha">Saransh Sinha</a></p>
-      <p>Prime calculation basen on the C# implementation of <a target="_blank" href="https://github.com/mztikk">Nils
-          Feierabend</a></p>
-      <p>iPhone Mockup by <a target="_blank" href="https://marvelapp.com">Marvel Prototyping</a></p>
     </div>
+    <div id="keyExchange">
+
+      <div id="encryption">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="content" id="p3">
+    <h1>Credits</h1>
+    <h1></h1>
+    <br><br>
+    <p>AES JavaScript Implementation by <a target="_blank" href="https://www.movable-type.co.uk/scripts/aes.html">Chris
+        Veness</a></p>
+    <p>
+      Icons made by <a target="_blank" href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
+      from
+      <a target="_blank" href="https://www.flaticon.com/" title="Flaticon"> flaticon.com</a></p>
+    <p>Illustrations from <a target="_blank" href="https://undraw.co">unDraw</a></p>
+    <p>Parallax Background by <a target="_blank" href="https://linkedin.com/in/saranshsinha">Saransh Sinha</a></p>
+    <p>Prime calculation basen on the C# implementation of <a target="_blank" href="https://github.com/mztikk">Nils
+        Feierabend</a></p>
+    <p>iPhone Mockup by <a target="_blank" href="https://marvelapp.com">Marvel Prototyping</a></p>
+  </div>
 
 </body>
 
