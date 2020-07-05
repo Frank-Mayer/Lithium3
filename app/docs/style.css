@@ -60,11 +60,11 @@ body {
   right: 100%;
 }
 
-.content div:not(.marvel-device, .marvel-device *) {
+.content div {
   margin: 32px 0;
 }
 
-.content div div:not(.marvel-device, .marvel-device *) {
+.content div div {
   margin: 16px 16px;
 }
 
