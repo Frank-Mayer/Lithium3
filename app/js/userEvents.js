@@ -5,7 +5,7 @@ var userEvents = new class {
     try {
       document.getElementById("msgSendButton").addEventListener("click", function () {
         if (msgText.value.length > 0) {
-          let d = new Date();
+          let d = new Timestamp();
           let newTxt = msgText.value;
           let pwd = cryptography.getChatPwd();
           for (let i = 0; i < localDB.chats.length; i++) {
@@ -18,7 +18,7 @@ var userEvents = new class {
             "sender": localDB.usrNam,
             "receiver": viewingChat,
             "text": cryptography.encrypt(newTxt, pwd),
-            "timestamp": (d.getFullYear().toString().padStart(4, "0")) + ((d.getMonth() + 1).toString().padStart(2, "0")) + (d.getDate().toString().padStart(2, "0")) + (d.getHours().toString().padStart(2, "0")) + (d.getMinutes().toString().padStart(2, "0")) + (d.getSeconds().toString().padStart(2, "0")) + (d.getMilliseconds().toString().padStart(3, "0")),
+            "timestamp": d.dateToTimestamp(),
             "read": false
           };
           firebase.database().ref("msg").push().set(msgPush);

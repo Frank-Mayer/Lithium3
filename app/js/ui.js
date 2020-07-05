@@ -63,6 +63,9 @@ class Ui {
   }
 
   drawMsg(drawInfo) {
+    let ts = new Timestamp();
+    
+    console.log(drawInfo.timestamp);
     let msgId = drawInfo.sender + drawInfo.timestamp;
     if (this.drawMsgHistory.includes(msgId)) {
       return;
@@ -80,7 +83,8 @@ class Ui {
     newChatText.id = drawInfo.key;
     let newChatTextEl = chatHistory.appendChild(newChatText);
     let dateTimeEl = document.createElement("span");
-    dateTimeEl.innerHTML = drawInfo.timestamp;
+    ts.timestampToDate(drawInfo.timestamp);
+    dateTimeEl.innerHTML = ts.toString();
     newChatTextInner.appendChild(dateTimeEl);
     newChatTextEl.appendChild(newChatTextInner);
     newChatTextEl.scrollIntoView();
