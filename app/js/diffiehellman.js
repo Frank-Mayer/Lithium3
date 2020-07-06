@@ -28,6 +28,7 @@ var diffiehellman = new class {
           let b = BigInt(snapshot.val().b);
           let key = (await bigInt(b).modPow(a, n)).toString();
           let partner = await cryptography.decrypt(snapshot.val().partner, key);
+          alert("Chat with " + partner + " created")
           firebase.database().ref("usrData/" + localDB.usrNam + "/chats").push().set({
             "name": await cryptography.encrypt(partner, localDB.usrPwd),
             "key": await cryptography.encrypt(key, localDB.usrPwd)
@@ -41,6 +42,7 @@ var diffiehellman = new class {
             .catch(function (error) {
               console.log("Remove failed: " + error.message)
             });
+          document.getElementById("qrCloseBtn").click();
         }
       });
     }
