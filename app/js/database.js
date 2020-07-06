@@ -110,7 +110,7 @@ var database = new class {
       this.msgLoader = void (0);
     }
     catch (e) {
-      console.error("this.msgLoader not started");
+      console.error("msgLoader not started");
     }
     finally {
       console.warn("MsgListener turned off");
