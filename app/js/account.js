@@ -19,7 +19,7 @@ var account = new class {
         ui.loginError();
       }
     }
-    catch (e) {
+    catch (error) {
       alert(error, true);
       ui.loginError();
     }
