@@ -6,7 +6,8 @@ var account = new class {
       let userName = document.getElementById("userName").value;
       let pwd = document.getElementById("password").value;
       let h = await cryptography.getHash(userName + pwd);
-      let email = userName + '@lithium-03.firebaseio.com';
+      // let email = userName + '@lithium-03.firebaseio.com';
+      let email = await cryptography.getHash(userName);
       await firebase.auth().signInWithEmailAndPassword(email, h).catch(function (error) {
         ui.loginError();
         alert(error.message, true);

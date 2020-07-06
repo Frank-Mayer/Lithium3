@@ -86,11 +86,8 @@ var userEvents = new class {
       let usrName = userName.value;
       let valid = true;
       let invalidChar = '\0';
-      console.clear();
-      console.log(usrName);
       for (let i in usrName) {
         let char = usrName[i];
-        console.log(char)
         if (!database.allowedCharacters.includes(char)) {
           valid = false;
           invalidChar = char;
