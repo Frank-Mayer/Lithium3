@@ -6,11 +6,9 @@ var account = new class {
       let userName = document.getElementById("userName").value;
       let pwd = document.getElementById("password").value;
       let h = await cryptography.getHash(userName + pwd);
-      // let email = userName + '@lithium-03.firebaseio.com';
-      let email = await cryptography.getHash(userName);
+      let email = userName + '@lithium-03.firebaseio.com';
       await firebase.auth().signInWithEmailAndPassword(email, h).catch(function (error) {
-        ui.loginError();
-        alert(error.message, true);
+        throw error.message;
       });
       let snapshot = await firebase.database().ref('usrHash/' + userName).once('value');
       if (h === snapshot.val()) {
@@ -22,35 +20,40 @@ var account = new class {
       }
     }
     catch (e) {
+      alert(error, true);
       ui.loginError();
     }
   }
 
   async register() {
-    let userName = document.getElementById("userName").value;
-    let pwd = document.getElementById("password").value;
-    let h = await cryptography.getHash(userName + pwd);
-    let email = userName + '@lithium-03.firebaseio.com';
-    await firebase.auth().createUserWithEmailAndPassword(email, h).catch(function (error) {
-      alert(error.message, true);
-      ui.loginError();
-    });
-    await firebase.auth().signInWithEmailAndPassword(email, h).catch(function (error) {
-      alert(error.message, true);
-      ui.loginError();
-    });
-
-    let snapshot = await firebase.database().ref('usrHash/' + userName).once('value');
-    if (snapshot.val() === null) {
-      firebase.database().ref("usrHash").child(userName).set(h);
-      firebase.database().ref("usrData").child(userName).set({
-        "chats": new Object(),
-        "img": database.defaultImg
+    try {
+      let userName = document.getElementById("userName").value;
+      let pwd = document.getElementById("password").value;
+      let h = await cryptography.getHash(userName + pwd);
+      let email = userName + '@lithium-03.firebaseio.com';
+      await firebase.auth().createUserWithEmailAndPassword(email, h).catch(function (error) {
+        throw error.message;
       });
-      localDB = { "usrNam": userName, "usrPwd": await cryptography.pwdHash(pwd + userName), "msg": [] };
-      init();
+      await firebase.auth().signInWithEmailAndPassword(email, h).catch(function (error) {
+        throw error.message;
+      });
+
+      let snapshot = await firebase.database().ref('usrHash/' + userName).once('value');
+      if (snapshot.val() === null) {
+        firebase.database().ref("usrHash").child(userName).set(h);
+        firebase.database().ref("usrData").child(userName).set({
+          "chats": new Object(),
+          "img": database.defaultImg
+        });
+        localDB = { "usrNam": userName, "usrPwd": await cryptography.pwdHash(pwd + userName), "msg": [] };
+        init();
+      }
+      else {
+        ui.loginError("Username not available");
+      }
     }
-    else {
+    catch (error) {
+      alert(error, true);
       ui.loginError();
     }
   }
