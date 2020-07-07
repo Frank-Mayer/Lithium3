@@ -60,6 +60,15 @@ body {
 .content.invis {
   left: 0;
   right: 100%;
+  opacity: 0;
+  color: transparent;
+  background: transparent;
+  background-size: 0 0;
+  -webkit-transition: all 250ms ease-out;
+  -moz-transition: all 250ms ease-out;
+  -o-transition: all 250ms ease-out;
+  -ms-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
 }
 
 .content div {
