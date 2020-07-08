@@ -1,13 +1,15 @@
 "use strict";
 
 var database = new class {
+  loginTime = -1;
+
   constructor() {
-    this.loginTime = -1;
+    let d = new Timestamp();
+    this.loginTime = d.dateToTimestamp();
   }
 
-  allowedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!\"§\\&()=?ß,;:-_@öäü*'+^°"
+  allowedCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!\"§\\&()=?ßẞ,;:-_@öäüÖÄÜ*'+^°"
 
-  loginTime = -1;
 
   msgLoader = void (0);
 
@@ -44,8 +46,8 @@ var database = new class {
 
   startMsgLoader() {
     try {
-      this.msgLoader = firebase.database().ref("msg").on("child_added", snapshot => {
-        if (snapshot.val().receiver === localDB.usrNam || snapshot.val().sender === localDB.usrNam) {
+      this.msgLoader = firebase.database().ref("msg").on("child_added", async (snapshot) => {
+        if (snapshot.val().receiver === localDB.email || snapshot.val().sender === localDB.email) {
           if (snapshot.val().receiver === localDB.usrNam && snapshot.val().read === false) {
             this.setRead(snapshot);
             if (viewingChat !== snapshot.val().sender) {
@@ -62,38 +64,46 @@ var database = new class {
               }
             }
           }
+          let newMsgDrawData;
+          // let d = new Timestamp();
+          // let nowTime = d.dateToTimestamp();
+
+          // if (snapshot.val().timestamp > nowTime - 100000000000) {
+          newMsgDrawData = snapshot.val();
+          newMsgDrawData["key"] = snapshot.key;
+          localDB["msg"].push(newMsgDrawData);
+          // }
+          // else {
+          //   console.log("deleting old msg...")
+          //   firebase.database().ref("msg").child(snapshot.key).remove()
+          //     .then(function () {
+          //       console.log("Remove succeeded.")
+          //     })
+          //     .catch(function (error) {
+          //       console.log("Remove failed: " + error.message)
+          //     });
+          // }
+          let rec = newMsgDrawData.receiver;
+          let send = newMsgDrawData.sender;
+          let viewCh = await getViewingChatMail();
+
+          if (newMsgDrawData.receiver === await getViewingChatMail() || newMsgDrawData.sender === await getViewingChatMail()) {
+            ui.drawMsg(newMsgDrawData);
+          }
           else {
-            let newMsgDrawData;
-            let d = new Date();
-            let nowTime = Number((d.getFullYear().toString().padStart(4, "0")) + ((d.getMonth() + 1).toString().padStart(2, "0")) + (d.getDate().toString().padStart(2, "0")) + (d.getHours().toString().padStart(2, "0")) + (d.getMinutes().toString().padStart(2, "0")) + (d.getSeconds().toString().padStart(2, "0")) + (d.getMilliseconds().toString().padStart(3, "0")));
-
-            if (this.loginTime === -1) {
-              this.loginTime = nowTime;
-            }
-
-            if (snapshot.val().timestamp > nowTime - 100000000000) {
-              newMsgDrawData = snapshot.val();
-              newMsgDrawData["key"] = snapshot.key;
-              localDB["msg"].push(newMsgDrawData);
-            }
-            else {
-              console.log("deleting old msg...")
-              firebase.database().ref("msg").child(snapshot.key).remove()
-                .then(function () {
-                  console.log("Remove succeeded.")
-                })
-                .catch(function (error) {
-                  console.log("Remove failed: " + error.message)
-                });
-            }
-
-            if (newMsgDrawData.receiver === viewingChat || newMsgDrawData.sender === viewingChat) {
-              ui.drawMsg(newMsgDrawData);
-            }
-            else {
-              if (nowTime > this.loginTime) {
+            let a = String(newMsgDrawData.sender);
+            let b = String(localDB.email);
+            if (a === b) {
+              console.error("meep")
+              let sender = await account.getUsernameFromMail(data.sender);
+              let pwd = await cryptography.getChatPwd(sender);
+              let ts = Number(await cryptography.decrypt(newMsgDrawData.timestamp, pwd));
+              if (ts > this.loginTime) {
                 notify.show(newMsgDrawData);
               }
+            }
+            else {
+              console.error("meep")
             }
           }
         }
@@ -120,13 +130,7 @@ var database = new class {
   setRead(snapshot) {
     let data = snapshot.val();
     data["read"] = true;
-    firebase.database().ref("msg").child(snapshot.key).remove()
-      .then(function () {
-        firebase.database().ref("msg").push().set(data);
-      })
-      .catch(function (error) {
-        console.log("Remove failed: " + error.message);
-      });
+    firebase.database().ref("msg/" + snapshot.key).set(data);
   }
 
   async createChat(data) {
@@ -140,7 +144,7 @@ var database = new class {
     let b = BigInt(Math.ceil(((crRand[0] / 255) * 64) + 1));
     let pb = await bigInt(g).modPow(b, n);
     let key = (await bigInt(a).modPow(b, n)).toString();
-    firebase.database().ref("dhKeyExchange/" + exchange).set({
+    firebase.database().ref("dhKeyExchange/" + exchange).update({
       "b": pb.toString(),
       "partner": await cryptography.encrypt(localDB.usrNam, key)
     });
@@ -148,5 +152,14 @@ var database = new class {
       "name": await cryptography.encrypt(partner, localDB.usrPwd),
       "key": await cryptography.encrypt(key, localDB.usrPwd)
     });
+  }
+
+  async getChatKey() {
+    let chatKey = new Array();
+    chatKey.push(String(account.getUserHashForDB()))
+    chatKey.push(String(await cryptography.getHash(viewingChat)));
+    chatKey = chatKey.sort().join('');
+    console.log(JSON.stringify(chatKey));
+    return String(chatKey);
   }
 }

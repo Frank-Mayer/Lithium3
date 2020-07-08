@@ -10,6 +10,12 @@
   z-index: 999;
 }
 
+#splashScreen h1,
+#usrNamErrorSpan,
+#pwdErrorSpan {
+  color: white;
+}
+
 #splashScreen #loginControl h1 {
   width: 100%;
   text-align: center;

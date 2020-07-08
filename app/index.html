@@ -20,16 +20,16 @@
   <script defer src="./js/firebase.js"></script>
 
   <link async rel="stylesheet" href="./css/colors.css" />
-  <link async rel="stylesheet" href="./css/select.css" />
   <link async rel="stylesheet" href="./css/main.css" />
+  <link async rel="stylesheet" href="./css/splashscreen.css" />
+  <link async rel="stylesheet" href="./css/parallax.css" />
+  <link async href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link async rel="stylesheet" href="./css/alert.css" />
+  <link async rel="stylesheet" href="./css/select.css" />
   <link async rel="stylesheet" href="./css/emoji.css" />
   <link async rel="stylesheet" href="./css/chatsList.css" />
   <link async rel="stylesheet" href="./css/chats.css" />
   <link async rel="stylesheet" href="./css/qr.css" />
-  <link async rel="stylesheet" href="./css/splashscreen.css" />
-  <link async rel="stylesheet" href="./css/alert.css" />
-  <link async href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-  <link async rel="stylesheet" href="./css/parallax.css" />
 </head>
 
 <body>
@@ -39,10 +39,12 @@
     <div id='stars3'></div>
     <div id="loginControl">
       <h1>Lithium3</h1>
-      <p id="usrNamErrorSpan">Username</p>
-      <input id="userName" type="text" placeholder="Username" oninput="userEvents.regUsrUpdate()" />
-      <p id="pwdErrorSpan">Password</p>
-      <input type="password" id="password" placeholder="Password" oninput="userEvents.regPwdUpdate()" />
+      <form>
+        <p id="usrNamErrorSpan">Username</p>
+        <input id="userName" type="text" placeholder="Username" autocomplete="username" />
+        <p id="pwdErrorSpan">Password</p>
+        <input type="password" id="password" placeholder="Password" autocomplete="current-password" inert />
+      </form>
       <div id="loginButtons">
         <button id="createAccount">Create new account</button>
         <button id="loginBtn">Login</button>
@@ -160,21 +162,21 @@
     </div>
   </div>
   </div>
-  <script async src="https://peterolson.github.io/BigInteger.js/BigInteger.min.js"></script>
+  <script async src="./js/BigInteger.min.js"></script>
+  <script async src="./js/qrcode.min.js"></script>
   <script async src="./js/math.js"></script>
   <script defer src="./js/timestamp.js"></script>
-  <script async src="./js/qrcode.min.js"></script>
   <script defer src="./js/aes.js"></script>
   <script defer src="./js/aes-ctr.js"></script>
   <script defer src="./js/cryptography.js"></script>
   <script defer src="./js/database.js"></script>
-  <script defer src="./js/ui.js"></script>
-  <script defer src="./js/emoji.js"></script>
   <script defer src="./js/account.js"></script>
   <script defer src="./js/notify.js"></script>
-  <script defer src="./js/index.js"></script>
-  <script defer src="./js/userEvents.js"></script>
+  <script defer src="./js/emoji.js"></script>
   <script defer src="./js/diffiehellman.js"></script>
+  <script defer src="./js/userEvents.js"></script>
+  <script defer src="./js/ui.js"></script>
+  <script defer src="./js/index.js"></script>
 </body>
 
 </html>

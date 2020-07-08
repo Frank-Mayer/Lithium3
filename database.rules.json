@@ -1,12 +1,22 @@
 {
   "rules": {
     ".read": "auth != null",
-    ".write": "auth != null",
+    "msg": {
+      "$msg": {
+        ".write": "auth != null && (!data.exists() || (data.child('sender').val() === auth.email || data.child('receiver').val() === auth.email))"
+      }
+    },
+    "usrData": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
     "usrHash": {
-      ".read": true
+      ".read": true,
+      ".write": "auth != null"
     },
     "salt": {
-      ".read": true
+      ".read": true,
+      ".write": false
     }
   }
 }

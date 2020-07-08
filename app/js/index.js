@@ -2,9 +2,21 @@
 
 var localDB = void (0);
 var ui = void (0);
+var userEvents = void (0);
 var notify = void (0);
 var viewingChat = "";
+var viewingChatMail = "";
+var viewingChatMailHis = "invalid";
 var register = false;
+
+async function getViewingChatMail() {
+  if (viewingChat !== viewingChatMailHis) {
+    viewingChatMailHis = viewingChat;
+    viewingChatMail = await account.getMailFromUsername(viewingChat);
+  }
+  return viewingChatMail;
+}
+
 if (String(document.readyState) !== 'loading') {
   onContentLoaded();
 } else {
@@ -16,6 +28,7 @@ if (String(document.readyState) !== 'loading') {
 function onContentLoaded() {
   try {
     ui = new Ui();
+    userEvents = new UserEvents();
     notify = new Notify();
     let loginBtn = document.getElementById("loginBtn");
     loginBtn.addEventListener("click", function () {
@@ -28,7 +41,7 @@ function onContentLoaded() {
           account.login();
         }
       }
-      finally {
+      catch (e) {
         loginBtn.disabled = false;
       }
     })

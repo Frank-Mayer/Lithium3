@@ -1,9 +1,9 @@
 "use strict";
 
-var userEvents = new class {
+class UserEvents {
   constructor() {
     try {
-      document.getElementById("msgSendButton").addEventListener("click", function () {
+      document.getElementById("msgSendButton").addEventListener("click", async function () {
         if (msgText.value.length > 0) {
           let d = new Timestamp();
           let newTxt = msgText.value;
@@ -15,10 +15,12 @@ var userEvents = new class {
             }
           }
           let msgPush = {
-            "sender": localDB.usrNam,
-            "receiver": viewingChat,
+            // "sender": localDB.usrNam,
+            "sender": localDB.email,
+            "receiver": await getViewingChatMail(),
+            // "receiver": viewingChat,
             "text": cryptography.encrypt(newTxt, pwd),
-            "timestamp": d.dateToTimestamp(),
+            "timestamp": cryptography.encrypt(d.dateToTimestamp(), pwd),
             "read": false
           };
           firebase.database().ref("msg").push().set(msgPush);
@@ -45,7 +47,7 @@ var userEvents = new class {
         setTimeout(async () => { await diffiehellman.init(); }, 1500);
       });
 
-      document.getElementById("qrCloseBtn").addEventListener("click", ui.closeQr)
+      document.getElementById("qrCloseBtn").addEventListener("click", ui.closeQr);
 
       document.getElementById("chatname").addEventListener("click", ui.closeChat);
 
@@ -62,6 +64,14 @@ var userEvents = new class {
         copyText.select();
         copyText.setSelectionRange(0, 99999)
         document.execCommand("copy");
+      });
+
+      document.getElementById("userName").addEventListener("input", () => {
+        userEvents.regUsrUpdate();
+      });
+
+      document.getElementById("password").addEventListener("input", () => {
+        userEvents.regPwdUpdate();
       });
     }
     catch (e) {
@@ -140,7 +150,11 @@ var registerPasswordCheckInterval = setInterval(async function () {
     }
   }
   else {
-    pwdCache = "";
-    ui.registerPwdErrorReset();
+    try {
+      ui.registerPwdErrorReset();
+    }
+    finally {
+      pwdCache = "";
+    }
   }
 }, 200);

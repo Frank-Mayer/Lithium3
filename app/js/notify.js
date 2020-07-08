@@ -9,17 +9,19 @@ class Notify {
     window.alert = ui.alert;
     Window.prototype.alert = ui.alert;
   }
-  show(data) {
+  async show(data) {
+    let sender = await account.getUsernameFromMail(data.sender);
+    let pwd = await cryptography.getChatPwd(sender);
     if (Notification.permission === 'denied') {
-      alert(cryptography.decrypt(data.text, cryptography.getChatPwd(data.sender)))
+      alert(cryptography.decrypt(data.text, pwd))
       return;
     }
     if (Notification.permission === 'default') {
       Notification.requestPermission().then(permission => {
       });
     }
-    let notification = new Notification(data.sender, {
-      "body": cryptography.decrypt(data.text, cryptography.getChatPwd(data.sender))
+    let notification = new Notification(sender, {
+      "body": cryptography.decrypt(data.text, pwd)
     });
   }
 }

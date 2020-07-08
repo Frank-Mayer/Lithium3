@@ -21,14 +21,15 @@ class Ui {
     });
   }
 
-  openChat(user) {
+  async openChat(user) {
     try {
       this.drawMsgHistory = new Array();
       document.getElementById("chat_" + user.name).classList = "chatList";
       chatHistory.innerHTML = "";
       viewingChat = user.name;
+      await getViewingChatMail();
       localDB.msg.forEach(el => {
-        if (el.receiver === viewingChat || el.sender === viewingChat) {
+        if (el.receiver === viewingChatMail || el.sender === viewingChatMail) {
           this.drawMsg(el);
         }
       });
@@ -62,10 +63,10 @@ class Ui {
     // diffiehellman.listener.off();
   }
 
-  drawMsg(drawInfo) {
+  async drawMsg(drawInfo) {
+    let pwd = cryptography.getChatPwd();
     let ts = new Timestamp();
-    
-    console.log(drawInfo.timestamp);
+    ts.timestampToDate(await cryptography.decrypt(drawInfo.timestamp, pwd));
     let msgId = drawInfo.sender + drawInfo.timestamp;
     if (this.drawMsgHistory.includes(msgId)) {
       return;
@@ -73,17 +74,15 @@ class Ui {
     this.drawMsgHistory.push(msgId);
     let newChatText = document.createElement("div");
     let newChatTextInner = document.createElement("div");
-    let pwd = cryptography.getChatPwd();
     let newText = cryptography.decrypt(drawInfo.text, pwd);
     let tempDiv = document.createElement("div");
     tempDiv.innerText = newText;
     newChatTextInner.innerHTML = emoji.replace(tempDiv.innerHTML);
     tempDiv.remove();
-    newChatText.classList = "chatMessage " + (drawInfo.sender === localDB.usrNam ? "out" : "in");
+    newChatText.classList = "chatMessage " + (drawInfo.sender === localDB.email ? "out" : "in");
     newChatText.id = drawInfo.key;
     let newChatTextEl = chatHistory.appendChild(newChatText);
     let dateTimeEl = document.createElement("span");
-    ts.timestampToDate(drawInfo.timestamp);
     dateTimeEl.innerHTML = ts.toString();
     newChatTextInner.appendChild(dateTimeEl);
     newChatTextEl.appendChild(newChatTextInner);
