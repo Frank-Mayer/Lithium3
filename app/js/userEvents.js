@@ -47,9 +47,11 @@ class UserEvents {
         setTimeout(async () => { await diffiehellman.init(); }, 1500);
       });
 
-      let fInput = document.getElementById("fileUpload");
-      fInput.parentElement.reset();
-      fInput.addEventListener("input", cryptography.handleFiles(fInput));
+      
+      document.getElementById("fileUpload").addEventListener("input", () => {
+        let fInput = document.getElementById("fileUpload");
+        cryptography.handleFiles(fInput);
+      });
 
       document.getElementById("fUploadButton").addEventListener("click", () => {
         document.getElementById("fileUpload").click();

@@ -108,12 +108,17 @@ var cryptography = new class {
   }
 
   async handleFiles(fInput) {
-    let files = fInput.files;
-    console.log(files)
 
-    for (let i = 0; i < files.length; i++) {
-      let file = files[i];
-      console.log(file)
+    let img = fInput.files;
+
+    if(img.length <= 0) {
+      return;
+    }
+    console.log(img)
+
+    for (let i = 0; i < img.length; i++) {
+      let imgSing = img[i];
+      console.log(imgSing)
       let reader = new FileReader();
       reader.onload = (async function () {
         return async function (e) {
@@ -126,7 +131,7 @@ var cryptography = new class {
           // document.getElementById("img").src = meep2;
         };
       })();
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(imgSing);
     }
   }
 }
