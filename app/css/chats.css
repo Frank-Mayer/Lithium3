@@ -154,3 +154,20 @@
     font-size: 24px;
   }
 }
+
+.fileUpload,
+#fileUpload {
+  width: 0;
+  height: 0;
+  visibility: collapse;
+}
+
+#fUploadButton {
+  padding: 4px;
+  float: right;
+  width: var(--header-hight);
+}
+
+#fUploadButton svg {
+  width: calc(var(--header-hight) - 8px);
+}

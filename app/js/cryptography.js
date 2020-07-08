@@ -107,21 +107,23 @@ var cryptography = new class {
     }
   }
 
-  async handleFiles() {
-    let files = document.getElementById("input").files;
+  async handleFiles(fInput) {
+    let files = fInput.files;
+    console.log(files)
 
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
-
+      console.log(file)
       let reader = new FileReader();
       reader.onload = (async function () {
         return async function (e) {
-          let meep = await AesCtr.encrypt(String(e.target.result), String("Meep"), 128);
-          let meep2 = await AesCtr.decrypt(meep, String("Meep"), 128)
-          document.getElementById("p1").innerText = e.target.result;
-          document.getElementById("p2").innerText = meep;
-          document.getElementById("p3").innerText = meep2;
-          document.getElementById("img").src = meep2;
+          console.log(String(e.target.result));
+          // let meep = await AesCtr.encrypt(String(e.target.result), String("Meep"), 128);
+          // let meep2 = await AesCtr.decrypt(meep, String("Meep"), 128)
+          // document.getElementById("p1").innerText = e.target.result;
+          // document.getElementById("p2").innerText = meep;
+          // document.getElementById("p3").innerText = meep2;
+          // document.getElementById("img").src = meep2;
         };
       })();
       reader.readAsDataURL(file);

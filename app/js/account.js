@@ -90,7 +90,6 @@ var account = new class {
     for (let chat in localDB.chats) {
       let name = (localDB.chats[chat].name)
       if ((await this.getMailFromUsername(name)) === mail) {
-        console.log(name)
         return name;
       }
     }

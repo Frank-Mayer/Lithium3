@@ -39,7 +39,7 @@
     <div id='stars3'></div>
     <div id="loginControl">
       <h1>Lithium3</h1>
-      <form>
+      <form enctype="multipart/form-data">
         <p id="usrNamErrorSpan">Username</p>
         <input id="userName" type="text" placeholder="Username" autocomplete="username" />
         <p id="pwdErrorSpan">Password</p>
@@ -69,7 +69,7 @@
 
   <div id="qrScan">
     <div class="header">
-      <span class="back" id="qrCloseBtn">
+      <span class="svgButton" id="qrCloseBtn">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
           viewBox="0 0 443.52 443.52" style="enable-background: new 0 0 443.52 443.52;" xml:space="preserve">
           <g>
@@ -106,7 +106,7 @@
 
   <div id="chat">
     <div class="header">
-      <span class="back" id="closeChat">
+      <span class="svgButton" id="closeChat">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
           viewBox="0 0 443.52 443.52" style="enable-background: new 0 0 443.52 443.52;" xml:space="preserve">
           <g>
@@ -135,6 +135,56 @@
         <!--<div>Icon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>-->
       </span>
       <b id="chatname"></b>
+      <span class="svgButton" id="fUploadButton">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 512 512" xml:space="preserve">
+          <g>
+            <g>
+              <path d="M472,312.642v139c0,11.028-8.972,20-20,20H60c-11.028,0-20-8.972-20-20v-139H0v139c0,33.084,26.916,60,60,60h392
+           c33.084,0,60-26.916,60-60v-139H472z" />
+            </g>
+          </g>
+          <g>
+            <g>
+              <polygon points="256,0.358 131.716,124.642 160,152.926 236,76.926 236,388.642 276,388.642 276,76.926 352,152.926 
+           380.284,124.642 		" />
+            </g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+        </svg>
+      </span>
+      <form class="fileUpload">
+        <input type="file" accept="img/*" id="fileUpload">
+      </form>
     </div>
     <div id="chatHistory"></div>
     <div id="msg">

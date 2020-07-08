@@ -8,6 +8,7 @@ var viewingChat = "";
 var viewingChatMail = "";
 var viewingChatMailHis = "invalid";
 var register = false;
+var initialized = false;
 
 async function getViewingChatMail() {
   if (viewingChat !== viewingChatMailHis) {
@@ -51,6 +52,10 @@ function onContentLoaded() {
 }
 
 function init() {
+  if (initialized) {
+    return;
+  }
+  initialized = true;
   // fade out Login Screen
   window.setTimeout(function () {
     document.getElementById("splashScreen").style.opacity = 0;

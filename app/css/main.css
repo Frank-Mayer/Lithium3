@@ -55,12 +55,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.back svg,
-.back svg * {
+.svgButton svg,
+.svgButton svg * {
   fill: var(--color);
 }
 
-.back svg {
+.svgButton svg {
   width: var(--header-hight);
 }
 
