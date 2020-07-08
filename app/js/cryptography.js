@@ -24,7 +24,6 @@ var cryptography = new class {
   }
 
   decrypt(str, pwd) {
-    console.log("decrypt " + str + " with pwd " + pwd)
     return AesCtr.decrypt(AesCtr.decrypt(atob(str), pwd, 256), pwd, 256);
   }
 

@@ -91,19 +91,16 @@ var database = new class {
             ui.drawMsg(newMsgDrawData);
           }
           else {
-            let a = String(newMsgDrawData.sender);
-            let b = String(localDB.email);
-            if (a === b) {
-              console.error("meep")
-              let sender = await account.getUsernameFromMail(data.sender);
-              let pwd = await cryptography.getChatPwd(sender);
-              let ts = Number(await cryptography.decrypt(newMsgDrawData.timestamp, pwd));
-              if (ts > this.loginTime) {
-                notify.show(newMsgDrawData);
-              }
-            }
-            else {
-              console.error("meep")
+            if (String(newMsgDrawData.sender) !== String(localDB.email)) {
+              account.getUsernameFromMail(newMsgDrawData.sender).then((sender) => {
+                cryptography.getChatPwd(sender).then((pwd) => {
+                  cryptography.decrypt(newMsgDrawData.timestamp, pwd).then((ts) => {
+                    if (ts > this.loginTime) {
+                      notify.show(newMsgDrawData);
+                    }
+                  });
+                });
+              });
             }
           }
         }
