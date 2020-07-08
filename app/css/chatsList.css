@@ -49,6 +49,7 @@
   border-radius: 50%;
   background-attachment: center;
   background-size: cover;
+  margin: 8px 8px 4px 8px;
 }
 
 .chatList b {

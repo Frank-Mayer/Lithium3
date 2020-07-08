@@ -92,15 +92,12 @@ var database = new class {
           }
           else {
             if (String(newMsgDrawData.sender) !== String(localDB.email)) {
-              account.getUsernameFromMail(newMsgDrawData.sender).then((sender) => {
-                cryptography.getChatPwd(sender).then((pwd) => {
-                  cryptography.decrypt(newMsgDrawData.timestamp, pwd).then((ts) => {
-                    if (ts > this.loginTime) {
-                      notify.show(newMsgDrawData);
-                    }
-                  });
-                });
-              });
+              let sender = await account.getUsernameFromMail(newMsgDrawData.sender);
+              let pwd = await cryptography.getChatPwd(sender);
+              let ts = await cryptography.decrypt(newMsgDrawData.timestamp, pwd);
+              if (ts > this.loginTime) {
+                notify.show(newMsgDrawData);
+              }
             }
           }
         }
