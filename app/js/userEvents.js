@@ -57,6 +57,8 @@ class UserEvents {
         document.getElementById("fileUpload").click();
       });
 
+      document.getElementById("visPwd").addEventListener("click", ui.togglePwd);
+
       document.getElementById("qrCloseBtn").addEventListener("click", ui.closeQr);
 
       document.getElementById("chatname").addEventListener("click", ui.closeChat);

@@ -159,4 +159,10 @@ class Ui {
       }, 500);
     }, 3000);
   }
+
+  togglePwd() {
+    console.error("Meep");
+    let pwd = document.getElementById("password");
+    pwd.setAttribute("type", (pwd.getAttribute("type") === "password" ? "text" : "password"));
+  }
 }
