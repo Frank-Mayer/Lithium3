@@ -20,7 +20,8 @@ async function getViewingChatMail() {
 
 if (String(document.readyState) !== 'loading') {
   onContentLoaded();
-} else {
+}
+else {
   document.addEventListener('DOMContentLoaded', function () {
     onContentLoaded();
   });
@@ -28,6 +29,10 @@ if (String(document.readyState) !== 'loading') {
 
 function onContentLoaded() {
   try {
+    requireCSS(["alert.css", "select.css"]);
+
+    requireJS(["aes.js", "aes-ctr.js"]);
+
     ui = new Ui();
     userEvents = new UserEvents();
     notify = new Notify();
@@ -56,6 +61,19 @@ function init() {
     return;
   }
   initialized = true;
+
+  requireJS(["BigInteger.min.js",
+    "qrcode.min.js",
+    "math.js",
+    "emoji.js",
+    "diffiehellman.js",
+  ]);
+
+  requireCSS(["emoji.css",
+    "chatsList.css",
+    "chats.css",
+    "qr.css"
+  ]);
   // fade out Login Screen
   window.setTimeout(function () {
     document.getElementById("splashScreen").style.opacity = 0;
@@ -102,5 +120,4 @@ function init() {
   setTimeout(() => {
     database.startMsgLoader();
   }, 200);
-
 }

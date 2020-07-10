@@ -11,8 +11,11 @@ if (String(document.readyState) !== 'loading') {
 function main() {
   function tab(index) {
     let content = document.getElementsByClassName("content")
+    content[i].classList.add("content");
     for (let i = 0; i < content.length; i++) {
-      content[i].classList = (index === i ? "content" : "content invis");
+      if (index !== i) {
+        content[i].classList.add("invis");
+      }
     }
     setHash(index);
   }

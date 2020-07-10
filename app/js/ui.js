@@ -24,7 +24,7 @@ class Ui {
   async openChat(user) {
     try {
       this.drawMsgHistory = new Array();
-      document.getElementById("chat_" + user.name).classList = "chatList";
+      document.getElementById("chat_" + user.name).classList.remove("nofification");
       chatHistory.innerHTML = "";
       viewingChat = user.name;
       await getViewingChatMail();
@@ -33,7 +33,7 @@ class Ui {
           this.drawMsg(el);
         }
       });
-      chatsView.classList = "chats layer2";
+      chatsView.classList.add("layer2");
       chatname.innerHTML = String(user.name);
       chat.style.setProperty("top", "16px");
       document.getElementById("msgText").focus();
@@ -46,19 +46,19 @@ class Ui {
   closeChat() {
     chatHistory.innerHTML = "";
     viewingChat = "";
-    chatsView.classList = "chats";
+    chatsView.classList.remove("layer2");
     chat.style.setProperty("top", "calc(100% + 50px)");
     this.drawMsgHistory = new Array();
   }
 
   openQr() {
-    chatsView.classList = "chats layer2";
+    chatsView.classList.add("layer2");
     document.getElementById("qrScan").style.setProperty("top", "16px");
 
   }
 
   closeQr() {
-    chatsView.classList = "chats";
+    chatsView.classList.remove("layer2");
     document.getElementById("qrScan").style.setProperty("top", "calc(100% + 50px)");
     // diffiehellman.listener.off();
   }
@@ -79,7 +79,7 @@ class Ui {
     tempDiv.innerText = newText;
     newChatTextInner.innerHTML = emoji.replace(tempDiv.innerHTML);
     tempDiv.remove();
-    newChatText.classList = "chatMessage " + (drawInfo.sender === localDB.email ? "out" : "in");
+    newChatText.classList.add("chatMessage", (drawInfo.sender === localDB.email ? "out" : "in"));
     newChatText.id = drawInfo.key;
     let newChatTextEl = chatHistory.appendChild(newChatText);
     let dateTimeEl = document.createElement("span");
@@ -92,32 +92,32 @@ class Ui {
   loginError(msg = "Error") {
     let loginBtn = document.getElementById("loginBtn");
     loginBtn.innerHTML = String(msg);
-    loginBtn.classList = "error";
+    loginBtn.classList.add("error");
     setTimeout(() => {
       loginBtn.innerHTML = register ? "Register" : "Login";
-      loginBtn.classList = "";
+      loginBtn.classList.remove("error");
     }, 1500);
   }
 
   registerPwdError(e) {
     loginBtn.disabled = true;
     document.getElementById("pwdErrorSpan").innerText = e;
-    document.getElementById("password").classList = "error";
-    document.getElementById("pwdErrorSpan").classList = "error";
+    document.getElementById("password").classList.add("error");
+    document.getElementById("pwdErrorSpan").classList.add("error");
   }
 
   registerPwdErrorReset() {
     loginBtn.disabled = false;
     document.getElementById("pwdErrorSpan").innerText = "Password";
-    document.getElementById("password").classList = "";
-    document.getElementById("pwdErrorSpan").classList = "";
+    document.getElementById("password").classList.remove("error");
+    document.getElementById("pwdErrorSpan").classList.remove("error");
   }
 
   registerPwdProcess() {
     loginBtn.disabled = true;
     document.getElementById("pwdErrorSpan").innerText = "Processing...";
-    document.getElementById("password").classList = "";
-    document.getElementById("pwdErrorSpan").classList = "";
+    document.getElementById("password").classList.remove("error");
+    document.getElementById("pwdErrorSpan").classList.remove("error");
   }
 
   drawQrCode(str) {
@@ -150,10 +150,10 @@ class Ui {
     msg.id = "alert";
     let alert = document.body.appendChild(msg)
     if (error) {
-      alert.classList = "error";
+      alert.classList.add("error");
     }
     setTimeout(() => {
-      alert.classList = "remove" + (error ? " error" : "");
+      alert.classList.add("remove");
       setTimeout(() => {
         alert.remove();
       }, 500);

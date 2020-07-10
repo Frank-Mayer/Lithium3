@@ -47,7 +47,7 @@ class UserEvents {
         setTimeout(async () => { await diffiehellman.init(); }, 1500);
       });
 
-      
+
       document.getElementById("fileUpload").addEventListener("input", () => {
         let fInput = document.getElementById("fileUpload");
         cryptography.handleFiles(fInput);
@@ -117,16 +117,16 @@ class UserEvents {
         }
       }
       if (valid) {
-        usrNamErrorSpan.classList = "";
+        usrNamErrorSpan.classList.remove("error");
         usrNamErrorSpan.innerText = "Username";
       }
       else {
-        usrNamErrorSpan.classList = "error";
-        usrNamErrorSpan.innerText = "Invalid character " + invalidChar;
+        usrNamErrorSpan.classList.add("error");
+        usrNamErrorSpan.innerText = `Invalid character ${invalidChar}`;
       }
     }
     else {
-      usrNamErrorSpan.classList = "";
+      usrNamErrorSpan.classList.remove("error");
       usrNamErrorSpan.innerText = "Username";
     }
   }

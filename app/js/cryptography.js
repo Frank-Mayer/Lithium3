@@ -111,14 +111,13 @@ var cryptography = new class {
 
     let img = fInput.files;
 
-    if(img.length <= 0) {
+    if (img.length <= 0) {
       return;
     }
     console.log(img)
 
     for (let i = 0; i < img.length; i++) {
       let imgSing = img[i];
-      console.log(imgSing)
       let reader = new FileReader();
       reader.onload = (async function () {
         return async function (e) {

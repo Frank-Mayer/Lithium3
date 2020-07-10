@@ -24,7 +24,7 @@ var database = new class {
         el.name = await cryptography.decrypt(el.name, localDB.usrPwd);
         let snapshot = await firebase.database().ref('usrData/' + el.name).once('value');
         let newChatHtml = document.createElement("div");
-        newChatHtml.classList = "chatList";
+        newChatHtml.classList.add("chatList");
         let img = document.createElement("img");
         img.src = './img/0.png';
         img.style.backgroundImage = 'url(https://firebasestorage.googleapis.com/v0/b/lithium-03.appspot.com/o/' + snapshot.val().img + ')';
@@ -53,12 +53,12 @@ var database = new class {
             if (viewingChat !== snapshot.val().sender) {
               notify.show(snapshot.val());
               try {
-                document.getElementById("chat_" + snapshot.val().sender).classList += " nofification";
+                document.getElementById("chat_" + snapshot.val().sender).classList.add("nofification");
               }
               catch (e) {
                 setTimeout(() => {
                   try {
-                    document.getElementById("chat_" + snapshot.val().sender).classList += " nofification";
+                    document.getElementById("chat_" + snapshot.val().sender).classList.add("nofification");
                   } catch (er) { }
                 }, 4000);
               }
