@@ -29,9 +29,9 @@ else {
 
 function onContentLoaded() {
   try {
-    requireCSS(["alert.css", "select.css"]);
-
-    requireJS(["aes.js", "aes-ctr.js"]);
+    ["alert.css", "select.css"].forEach((f) => {
+      require("./css/" + f);
+    });
 
     ui = new Ui();
     userEvents = new UserEvents();
@@ -62,18 +62,23 @@ function init() {
   }
   initialized = true;
 
-  requireJS(["BigInteger.min.js",
+  ["BigInteger.min.js",
     "qrcode.min.js",
     "math.js",
     "emoji.js",
     "diffiehellman.js",
-  ]);
+  ].forEach((f) => {
+    require("./js/" + f);
+  });
 
-  requireCSS(["emoji.css",
+  ["emoji.css",
     "chatsList.css",
     "chats.css",
     "qr.css"
-  ]);
+  ].forEach((f) => {
+    require("./css/" + f);
+  });
+
   // fade out Login Screen
   window.setTimeout(function () {
     document.getElementById("splashScreen").style.opacity = 0;
