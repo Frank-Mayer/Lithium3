@@ -18,7 +18,7 @@
 
 #splashScreen #SplashTitle {
   width: 100%;
-  margin-top: 33%;
+  margin-top: 10%;
   text-align: center;
   font-size: 64px;
   margin-bottom: 32px;
@@ -101,9 +101,12 @@
   transition: 250ms;
 }
 
-@media only screen and (max-height: 310px) {
+@media only screen and (max-height: 400px) {
   #loginControl {
     top: 0 !important;
+  }
+  #SplashTitle {
+    opacity: 0;
   }
 }
 

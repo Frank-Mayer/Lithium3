@@ -35,7 +35,6 @@ function onContentLoaded() {
 
     setTimeout(() => {
       document.getElementById("loginControl").style.opacity = "1";
-      document.getElementById("SplashTitle").style.opacity = "0";
     }, 500);
 
     ui = new Ui();
