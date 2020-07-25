@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script rel="preload">
+    if (window.parent !== window.top || window === window.top) {
+      window.location.href = "./index.html";
+    }
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lithium3</title>
+  <script src="./js/firebase/firebase-app.js"></script>
+  <script src="./js/firebase/firebase-auth.js"></script>
+  <script src="./js/firebase/firebase-database.js"></script>
+  <!-- <script src="./js/init.js"></script> -->
+  <script src="../private/init.js"></script>
+  <script defer src="./js/firebase.js"></script>
+
+  <link async rel="stylesheet" href="./css/colors.css" />
+  <link async rel="stylesheet" href="./css/main.css" />
+  <link async rel="stylesheet" href="./css/splashscreen.css" />
+  <link async rel="stylesheet" href="./css/parallax.css" />
+  <link async href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link async rel="stylesheet" href="./css/alert.css" />
+  <link async rel="stylesheet" href="./css/select.css" />
+  <link async rel="stylesheet" href="./css/emoji.css" />
+  <link async rel="stylesheet" href="./css/chatsList.css" />
+  <link async rel="stylesheet" href="./css/chats.css" />
+  <link async rel="stylesheet" href="./css/qr.css" />
+</head>
+
+<body>
+  <div id="splashScreen">
+    <div id='stars'></div>
+    <div id='stars2'></div>
+    <div id='stars3'></div>
+    <h1 id="SplashTitle">Lithium3</h1>
+    <div id="loginControl">
+      <form enctype="multipart/form-data">
+        <p id="usrNamErrorSpan">Username</p>
+        <input class="SplashEntryField" id="userName" type="text" placeholder="Username" autocomplete="username" />
+        <p id="pwdErrorSpan">Password</p>
+        <div class="SplashEntryField">
+          <input type="password" id="password" placeholder="Password" autocomplete="current-password" inert />
+          <img src="./img/eye.svg" id="visPwd"></img>
+        </div>
+      </form>
+      <div id="loginButtons">
+        <button id="createAccount">Create new account</button>
+        <button id="loginBtn">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="chats" id="chatsView">
+    <h1>Chats</h1>
+    <div id="qrButton">
+      <svg viewBox="0 0 411 410" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m211.898438 199.5 17.601562-52.699219 35.101562 35.097657zm65.703124-24.398438-41.300781-41.300781 133.398438-133.300781 41.300781 41.300781zm0 0">
+        </path>
+        <path
+          d="m353.199219 170.5c-1.859375-.011719-3.644531.722656-4.960938 2.039062-1.316406 1.3125-2.050781 3.101563-2.039062 4.960938v186.898438c-.015625 18.21875-14.78125 32.984374-33 33h-266.199219c-18.21875-.015626-32.980469-14.78125-33-33v-266.199219c.019531-18.21875 14.78125-32.980469 33-33h186.898438c3.867187 0 7-3.132813 7-7 0-3.863281-3.132813-7-7-7h-186.898438c-25.941406.042969-46.9609375 21.058593-47 47v266.199219c.0390625 25.941406 21.058594 46.960937 47 47h266.199219c25.941406-.039063 46.960937-21.058594 47-47v-186.898438c-.011719-3.863281-3.136719-6.988281-7-7zm0 0">
+        </path>
+      </svg>
+    </div>
+    <div id="chats"></div>
+  </div>
+
+  <div id="qrScan">
+    <div class="header">
+      <span class="svgButton" id="qrCloseBtn">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 443.52 443.52" style="enable-background: new 0 0 443.52 443.52;" xml:space="preserve">
+          <g>
+            <g>
+              <path
+                d="M143.492,221.863L336.226,29.129c6.663-6.664,6.663-17.468,0-24.132c-6.665-6.662-17.468-6.662-24.132,0l-204.8,204.8c-6.662,6.664-6.662,17.468,0,24.132l204.8,204.8c6.78,6.548,17.584,6.36,24.132-0.42c6.387-6.614,6.387-17.099,0-23.712L143.492,221.863z">
+              </path>
+            </g>
+          </g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+        </svg>
+        <!--<div>Icon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>-->
+      </span>
+      <b>Scan the QR-Code to start a new conversation, the gernaration could take a while.</b>
+    </div>
+    <div id="qrCode"></div>
+    <br>
+    <input readonly type="text" id="connectHashTxt"></input>
+  </div>
+
+  <div id="chat">
+    <div class="header">
+      <span class="svgButton" id="closeChat">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 443.52 443.52" style="enable-background: new 0 0 443.52 443.52;" xml:space="preserve">
+          <g>
+            <g>
+              <path
+                d="M143.492,221.863L336.226,29.129c6.663-6.664,6.663-17.468,0-24.132c-6.665-6.662-17.468-6.662-24.132,0l-204.8,204.8c-6.662,6.664-6.662,17.468,0,24.132l204.8,204.8c6.78,6.548,17.584,6.36,24.132-0.42c6.387-6.614,6.387-17.099,0-23.712L143.492,221.863z">
+              </path>
+            </g>
+          </g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+          <g></g>
+        </svg>
+        <!--<div>Icon made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>-->
+      </span>
+      <b id="chatname"></b>
+      <span class="svgButton" id="fUploadButton">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 512 512" xml:space="preserve">
+          <g>
+            <g>
+              <path d="M472,312.642v139c0,11.028-8.972,20-20,20H60c-11.028,0-20-8.972-20-20v-139H0v139c0,33.084,26.916,60,60,60h392
+           c33.084,0,60-26.916,60-60v-139H472z" />
+            </g>
+          </g>
+          <g>
+            <g>
+              <polygon points="256,0.358 131.716,124.642 160,152.926 236,76.926 236,388.642 276,388.642 276,76.926 352,152.926 
+           380.284,124.642 		" />
+            </g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+          <g>
+          </g>
+        </svg>
+      </span>
+      <input type="file" accept="img/*" id="fileUpload">
+    </div>
+    <div id="chatHistory"></div>
+    <div id="msg">
+      <table width="100%">
+        <tr>
+          <td id="msgInput">
+            <textarea id="msgText" name="msgText" placeholder="Write new message"></textarea>
+          </td>
+          <td id="msgSend">
+            <button id="msgSendButton">
+              <svg enable-background="new 0 0 512 512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <path
+                    d="m329.065 512h-53.065c-19.333 0-35.156-15.319-35.967-34.457l-29.902-175.674-175.674-29.901c-19.138-.812-34.457-16.635-34.457-35.968v-53.065c0-39.738 26.958-74.089 65.557-83.535l402.08-98.402c.056-.014.112-.027.168-.04 12.2-2.847 24.775.742 33.635 9.602 8.859 8.86 12.449 21.434 9.603 33.636-.013.056-.026.112-.04.168l-98.402 402.08c-9.447 38.599-43.798 65.556-83.536 65.556zm146.065-479.892-401.966 98.375c-24.237 5.931-41.164 27.5-41.164 52.452v53.065c0 2.206 1.794 4 4 4 .9 0 1.798.076 2.685.227l188 32c6.7 1.14 11.948 6.389 13.088 13.088l32 188c.151.887.227 1.785.227 2.685 0 2.206 1.794 4 4 4h53.065c24.952 0 46.521-16.927 52.452-41.164l98.376-401.966c.389-1.76-.37-2.973-1.08-3.683-.71-.709-1.924-1.468-3.683-1.079z">
+                  </path>
+                  <path
+                    d="m224 304c-4.095 0-8.189-1.562-11.313-4.687-6.249-6.248-6.249-16.379 0-22.627l160-160c6.248-6.249 16.379-6.249 22.627 0 6.249 6.248 6.249 16.379 0 22.627l-160 160c-3.125 3.125-7.219 4.687-11.314 4.687z">
+                  </path>
+                </g>
+              </svg>
+              <!-- <div>Icon made by <a href="https://www.flaticon.com/authors/bqlqn" title="bqlqn">bqlqn</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  </div>
+  <script defer src="https://frank-mayer.github.io/require-js/require.js"></script>
+  <script defer src="./js/aes.js"></script>
+  <script defer src="./js/aes-ctr.js"></script>
+  <script defer src="./js/timestamp.js"></script>
+  <script defer src="./js/cryptography.js"></script>
+  <script defer src="./js/database.js"></script>
+  <script defer src="./js/account.js"></script>
+  <script defer src="./js/notify.js"></script>
+  <script defer src="./js/userEvents.js"></script>
+  <script defer src="./js/ui.js"></script>
+  <script defer src="./js/index.js"></script>
+</body>
+
+</html>
