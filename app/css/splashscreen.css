@@ -53,7 +53,6 @@
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px;
-  text-align: center;
   -webkit-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.5);
@@ -61,6 +60,14 @@
   margin: 16px calc(50% - 133px);
   width: 250px;
   height: 25px;
+}
+
+#splashScreen #loginControl button {
+  text-align: center;
+}
+
+#splashScreen input {
+  text-align: center;
 }
 
 #splashScreen #loginControl button:not(#loginBtn),
