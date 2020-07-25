@@ -16,15 +16,36 @@
   color: white;
 }
 
-#splashScreen #loginControl h1 {
+#splashScreen #SplashTitle {
   width: 100%;
+  margin-top: 33%;
   text-align: center;
   font-size: 64px;
   margin-bottom: 32px;
+  transition: 250ms;
+}
+
+#splashScreen .SplashEntryField input {
+  width: calc(100% - (28px + 8px));
+  -webkit-transform: translateY(-8px);
+  transform: translateY(-8px);
+  background-color: transparent;
+  color: var(--Gray6);
+  font-size: 24px;
+  border: none;
+  outline: none;
+}
+
+#splashScreen .SplashEntryField #visPwd {
+  width: 28px;
+}
+
+#splashScreen .SplashEntryField * {
+  display: inline;
 }
 
 #splashScreen #loginControl button,
-#splashScreen #loginControl input {
+#splashScreen #loginControl .SplashEntryField {
   padding: 8px;
   font-size: 24px;
   color: var(--Gray6);
@@ -39,15 +60,15 @@
   display: block;
   margin: 16px calc(50% - 133px);
   width: 250px;
+  height: 25px;
 }
 
 #splashScreen #loginControl button:not(#loginBtn),
-#splashScreen #loginControl input {
+#splashScreen #loginControl .SplashEntryField {
   background-color: var(--Gray);
 }
 
-#splashScreen input:focus,
-#splashScreen input:hover,
+#splashScreen .SplashEntryField:hover,
 #splashScreen button:hover,
 #splashScreen button:disabled {
   -webkit-box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.5);
@@ -69,13 +90,21 @@
 }
 
 #loginControl {
+  opacity: 0;
   padding: 0;
   margin: 0;
   position: absolute;
-  width: 100%;
+  max-width: 100%;
   right: 0;
   bottom: 16px;
   left: 0;
+  transition: 250ms;
+}
+
+@media only screen and (max-height: 310px) {
+  #loginControl {
+    top: 0 !important;
+  }
 }
 
 #splashScreen button.error {

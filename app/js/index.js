@@ -33,6 +33,11 @@ function onContentLoaded() {
       require("./css/" + f);
     });
 
+    setTimeout(() => {
+      document.getElementById("loginControl").style.opacity = "1";
+      document.getElementById("SplashTitle").style.opacity = "0";
+    }, 500);
+
     ui = new Ui();
     userEvents = new UserEvents();
     notify = new Notify();

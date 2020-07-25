@@ -37,15 +37,16 @@
     <div id='stars'></div>
     <div id='stars2'></div>
     <div id='stars3'></div>
+    <h1 id="SplashTitle">Lithium3</h1>
     <div id="loginControl">
-      <h1>Lithium3</h1>
       <form enctype="multipart/form-data">
         <p id="usrNamErrorSpan">Username</p>
-        <input id="userName" type="text" placeholder="Username" autocomplete="username" />
+        <input class="SplashEntryField" id="userName" type="text" placeholder="Username" autocomplete="username" />
         <p id="pwdErrorSpan">Password</p>
-        <input type="password" id="password" placeholder="Password" autocomplete="current-password" inert />
-        <div id="visPwd">Visible</div>
-
+        <div class="SplashEntryField">
+          <input type="password" id="password" placeholder="Password" autocomplete="current-password" inert />
+          <img src="./img/eye.svg" id="visPwd"></img>
+        </div>
       </form>
       <div id="loginButtons">
         <button id="createAccount">Create new account</button>
