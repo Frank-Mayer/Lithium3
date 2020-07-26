@@ -63,16 +63,13 @@ Math.nthPrime = async function (n) {
 }
 
 Math.getHugePrime = async function (N) {
-  let n = BigInt(N);
-  let i = 9007199254740991n;
-  let primeCount = 1n;
-  while (primeCount < n) {
-    if (await Math.isPrime(i)) {
-      primeCount++;
-    }
-    i += 2n;
+  var length = 16,
+    charset = "1234567890",
+    retVal = String(N + 1);
+  for (var i = 0, n = charset.length; i < length; ++i) {
+    retVal += charset.charAt(Math.floor(Math.random() * n));
   }
-  return i - 2n;
+  return await Math.findNextPrime(retVal);
 }
 
 BigInt.prototype.toJSON = function () { return this.toString() }
