@@ -7,7 +7,7 @@ class WatchDog {
       throw "fatal error";
     }
     else {
-      let embed = document.createElement("embed");
+      let embed = document.createElement("iframe");
       embed.src = `./app.html${window.location.hash}`;
       document.body.appendChild(embed);
     }

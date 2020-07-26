@@ -1,0 +1,25 @@
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: red;
+}
+embed,
+iframe,
+object {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+* {
+  outline: none;
+  border: none;
+  box-shadow: none;
+  display: block;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
