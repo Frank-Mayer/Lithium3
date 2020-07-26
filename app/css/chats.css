@@ -44,7 +44,7 @@
   height: var(--msg);
   background-color: var(--Gray3);
   padding: 4px 8px 8px 4px;
-  margin: 0 4px 4px 4px;
+  margin: 0 4px 0px 4px;
   border-radius: 10px;
 }
 

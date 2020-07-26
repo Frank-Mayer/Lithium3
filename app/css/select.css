@@ -1,4 +1,9 @@
 *::selection {
-    background: var(--Blue);
-    color: var(--Main);
+  background: var(--Blue);
+  color: var(--Main);
+}
+
+.chatMessage.out *::selection {
+  background: var(--Accent);
+  color: var(--color);
 }
