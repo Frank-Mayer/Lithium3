@@ -64,6 +64,7 @@
 
 #splashScreen #loginControl button {
   text-align: center;
+  height: unset;
 }
 
 #splashScreen input {
