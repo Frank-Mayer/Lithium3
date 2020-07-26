@@ -18,16 +18,15 @@ button {
 
 * {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
+  overflow: auto;
 }
 
 *::-webkit-scrollbar {
   display: none;
 }
 
-*:not(textarea):not(input):not(#connectHashTxt) {
+*:not(textarea):not(input):not(#connectHashTxt):not(#chat #msg) {
   outline: none;
   overflow: hidden;
   -webkit-user-select: none;
@@ -42,7 +41,7 @@ button {
 
 html,
 body {
-  overflow: hidden;
+  overflow: hidden !important;
   background-color: #000000;
 }
 

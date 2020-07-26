@@ -71,6 +71,7 @@ function init() {
     "math.js",
     "emoji.js",
     "diffiehellman.js",
+    "MsgPush.js"
   ].forEach((f) => {
     require("./js/" + f);
   });

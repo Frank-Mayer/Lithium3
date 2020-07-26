@@ -107,30 +107,40 @@ var cryptography = new class {
     }
   }
 
-  async handleFiles(fInput) {
+  async handleFiles(file) {
+    var input = file.target;
+    var reader = new FileReader();
+    reader.onload = async function () {
+      var dataURL = reader.result;
+      let d = new Timestamp();
+      let pwd = await cryptography.getChatPwd();
+      for (let i = 0; i < window.localDB.chats.length; i++) {
+        if (localDB.chats[i].name === viewingChat) {
+          pwd = await cryptography.decrypt(localDB.chats[i].key, localDB.usrPwd);
+          break;
+        }
+      }
+      let msgPush = new MsgPush(
+        dataURL,
+        await getViewingChatMail(),
+        d,
+        pwd,
+        "img"
+      );
+      firebase.database().ref("msg").push().set(msgPush);
+    };
+    reader.readAsDataURL(input.files[0]);
 
-    let img = fInput.files;
 
-    if (img.length <= 0) {
-      return;
-    }
-    console.log(img)
+    // let imgSing = img[0];
+    // console.log(imgSing);
+    // let reader = new FileReader();
+    // reader.onload = (async function () {
+    //   return async function (e) {
+    //     // console.log(String(e.target.result));
 
-    for (let i = 0; i < img.length; i++) {
-      let imgSing = img[i];
-      let reader = new FileReader();
-      reader.onload = (async function () {
-        return async function (e) {
-          console.log(String(e.target.result));
-          // let meep = await AesCtr.encrypt(String(e.target.result), String("Meep"), 128);
-          // let meep2 = await AesCtr.decrypt(meep, String("Meep"), 128)
-          // document.getElementById("p1").innerText = e.target.result;
-          // document.getElementById("p2").innerText = meep;
-          // document.getElementById("p3").innerText = meep2;
-          // document.getElementById("img").src = meep2;
-        };
-      })();
-      reader.readAsDataURL(imgSing);
-    }
+    //   };
+    // })();
+    // reader.readAsDataURL(imgSing);
   }
 }

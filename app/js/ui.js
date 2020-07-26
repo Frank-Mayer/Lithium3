@@ -76,7 +76,21 @@ class Ui {
     let newChatTextInner = document.createElement("div");
     let newText = cryptography.decrypt(drawInfo.text, pwd);
     let tempDiv = document.createElement("div");
-    tempDiv.innerText = newText;
+    if ("type" in drawInfo) {
+      switch (drawInfo.type) {
+        case "txt":
+          tempDiv.innerText = newText;
+          break;
+        case "img":
+          let imgPrev = document.createElement("img");
+          imgPrev.src = newText;
+          tempDiv.appendChild(imgPrev);
+          break;
+      }
+    }
+    else {
+      tempDiv.innerText = newText;
+    }
     newChatTextInner.innerHTML = emoji.replace(tempDiv.innerHTML);
     tempDiv.remove();
     newChatText.classList.add("chatMessage", (drawInfo.sender === localDB.email ? "out" : "in"));

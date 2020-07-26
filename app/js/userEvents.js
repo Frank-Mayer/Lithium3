@@ -14,15 +14,12 @@ class UserEvents {
               break;
             }
           }
-          let msgPush = {
-            // "sender": localDB.usrNam,
-            "sender": localDB.email,
-            "receiver": await getViewingChatMail(),
-            // "receiver": viewingChat,
-            "text": cryptography.encrypt(newTxt, pwd),
-            "timestamp": cryptography.encrypt(d.dateToTimestamp(), pwd),
-            "read": false
-          };
+          let msgPush = new MsgPush(
+            newTxt,
+            await getViewingChatMail(),
+            d,
+            pwd
+          );
           firebase.database().ref("msg").push().set(msgPush);
           msgText.value = "";
         }
@@ -48,9 +45,8 @@ class UserEvents {
       });
 
 
-      document.getElementById("fileUpload").addEventListener("input", () => {
-        let fInput = document.getElementById("fileUpload");
-        cryptography.handleFiles(fInput);
+      document.getElementById("fileUpload").addEventListener("input", (event) => {
+        cryptography.handleFiles(event);
       });
 
       document.getElementById("fUploadButton").addEventListener("click", () => {

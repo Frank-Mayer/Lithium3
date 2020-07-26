@@ -88,13 +88,16 @@
   fill: var(--Accent);
 }
 
-.chatMessage div {
-  word-wrap: break-word;
-  outline: none;
+.chatMessage div,
+.chatMessage div * {
   -webkit-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+}
+.chatMessage div {
+  word-wrap: break-word;
+  outline: none;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -105,6 +108,11 @@
   font-size: 18px;
   color: #ffffff;
   display: table;
+}
+
+.chatMessage img {
+  max-width: 50vw;
+  display: inline-block;
 }
 
 .chatMessage div span {
