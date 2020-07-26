@@ -26,7 +26,7 @@ button {
   display: none;
 }
 
-*:not(textarea):not(input):not(#connectHashTxt):not(#chat #msg) {
+*:not(textarea):not(input):not(#connectHashTxt):not(#chat #msg):not(#msgText) {
   outline: none;
   overflow: hidden;
   -webkit-user-select: none;
