@@ -70,7 +70,7 @@ var account = new class {
       }
     }
     catch (error) {
-      alert(error, true);
+      alert(error.replace("email address", "username"), true);
       ui.loginError();
       document.getElementById("loginBtn").disabled = false;
     }
