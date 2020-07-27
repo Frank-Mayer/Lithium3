@@ -62,6 +62,8 @@ class UserEvents {
       document.getElementById("closeChat").addEventListener("click", ui.closeChat);
 
       document.getElementById("createAccount").addEventListener("click", function () {
+        document.getElementById("userName").value = "";
+        document.getElementById("password").value = "";
         register = !register;
         document.getElementById("loginBtn").innerHTML = register ? "Register" : "Login";
         document.getElementById("createAccount").innerHTML = register ? "I already have an account" : "Create new accound";
@@ -70,7 +72,7 @@ class UserEvents {
       document.getElementById("connectHashTxt").addEventListener("click", () => {
         var copyText = document.getElementById("connectHashTxt");
         copyText.select();
-        copyText.setSelectionRange(0, 99999)
+        copyText.setSelectionRange(0, 99999);
         document.execCommand("copy");
       });
 
@@ -133,7 +135,6 @@ var pwdChangeTimeCache = new Date();
 var pwdCache = "";
 var registerPasswordCheckInterval = setInterval(async function () {
   let pwdEl = document.getElementById("password");
-  let pwdErrorSpan = document.getElementById("pwdErrorSpan");
   if (register) {
     let tempTime = new Date();
     let seconds = (tempTime.getTime() - pwdChangeTimeCache.getTime()) / 1000;
@@ -144,6 +145,7 @@ var registerPasswordCheckInterval = setInterval(async function () {
           pwdCache = newPwdCache;
           cryptography.isPasswordLeaked(newPwdCache, function (x) {
             if (x) {
+              console.log(pwdEl.value + " " + newPwdCache);
               ui.registerPwdError("Password found in leaked databases");
             }
             else {

@@ -10,10 +10,12 @@ if (String(document.readyState) !== 'loading') {
 
 function main() {
   function tab(index) {
-    let content = document.getElementsByClassName("content")
-    content[i].classList.add("content");
+    let content = document.getElementsByClassName("content");
     for (let i = 0; i < content.length; i++) {
-      if (index !== i) {
+      if (index === i) {
+        content[i].classList.remove("invis");
+      }
+      else {
         content[i].classList.add("invis");
       }
     }

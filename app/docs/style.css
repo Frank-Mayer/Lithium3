@@ -173,19 +173,6 @@ table {
   width: 100%;
 }
 
-.desktop.demo {
-  margin-left: 32px;
-  float: right;
-  --scale: 0.3;
-  height: calc(1920px * var(--scale));
-  width: calc(1080px * var(--scale));
-  border-radius: 1em;
-  border-color: var(--Gray4);
-  border-style: solid;
-  border-width: 4px;
-  box-sizing: border-box;
-}
-
 .mobile.demo {
   margin: 16px;
   cursor: pointer;
