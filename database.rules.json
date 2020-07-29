@@ -7,7 +7,6 @@
       }
     },
     "usrData": {
-      ".read": "auth != null",
       ".write": "auth != null"
     },
     "usrHash": {
@@ -17,6 +16,10 @@
     "salt": {
       ".read": true,
       ".write": false
+    },
+    "dhKeyExchange": {
+      ".read": "auth != null",
+      ".write": true
     }
   }
 }

@@ -128,14 +128,15 @@ var database = new class {
   }
 
   async createChat(data) {
+    await require("./js/BigInteger.min.js");
     let crRand = new Uint8Array(1);
     window.crypto.getRandomValues(crRand);
     let exchange = data.exchange;
     let partner = data.partner;
-    let g = BigInt(data.g);
-    let n = BigInt(data.n);
-    let a = BigInt(data.a);
-    let b = BigInt(Math.ceil(((crRand[0] / 255) * 64) + 1));
+    let g = bigInt(data.g);
+    let n = bigInt(data.n);
+    let a = bigInt(data.a);
+    let b = bigInt(Math.ceil(((crRand[0] / 255) * 64) + 1));
     let pb = await bigInt(g).modPow(b, n);
     let key = (await bigInt(a).modPow(b, n)).toString();
     firebase.database().ref("dhKeyExchange/" + exchange).update({

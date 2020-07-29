@@ -113,7 +113,7 @@
   display: table;
 }
 
-.chatMessage img {
+.chatMessage img.upload {
   min-width: 10vw;
   max-width: 30vw;
   max-height: 30vh;

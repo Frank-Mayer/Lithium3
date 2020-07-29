@@ -66,8 +66,7 @@ function init() {
   }
   initialized = true;
 
-  ["BigInteger.min.js",
-    "qrcode.min.js",
+  ["qrcode.min.js",
     "math.js",
     "emoji.js",
     "diffiehellman.js",
@@ -96,6 +95,7 @@ function init() {
   try {
     if (location.hash.length > 1) {
       let hash = JSON.parse(atob(location.hash.substr(1)));
+      window.history.replaceState({}, null, window.location.href.substr(0, window.location.href.indexOf('#')));
       database.createChat(hash);
     }
   }

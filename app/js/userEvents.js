@@ -145,7 +145,6 @@ var registerPasswordCheckInterval = setInterval(async function () {
           pwdCache = newPwdCache;
           cryptography.isPasswordLeaked(newPwdCache, function (x) {
             if (x) {
-              console.log(pwdEl.value + " " + newPwdCache);
               ui.registerPwdError("Password found in leaked databases");
             }
             else {

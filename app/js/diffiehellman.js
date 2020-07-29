@@ -3,6 +3,7 @@
 var diffiehellman = new class {
   listener = void (0);
   async init() {
+    await require("./js/BigInteger.min.js");
     try {
       let crRand = new Uint8Array(3);
       window.crypto.getRandomValues(crRand);

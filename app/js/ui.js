@@ -84,6 +84,7 @@ class Ui {
         case "img":
           let imgPrev = document.createElement("img");
           imgPrev.src = newText;
+          imgPrev.classList.add("upload");
           tempDiv.appendChild(imgPrev);
           break;
       }
