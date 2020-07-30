@@ -83,6 +83,11 @@ class UserEvents {
       document.getElementById("password").addEventListener("input", () => {
         userEvents.regPwdUpdate();
       });
+
+      window.addEventListener("beforeunload", async function (event) {
+        firebase.auth().signOut();
+        event.preventDefault();
+      });
     }
     catch (e) {
       console.error(e);
