@@ -2,9 +2,18 @@
 <html>
 
 <head>
+  <style rel="preload">
+    html {
+      display: none;
+    }
+  </style>
   <script rel="preload">
-    if (window !== window.top) {
-      window.location.href = "./405.html";
+    if (self === top) {
+      document.documentElement.style.display = "block";
+      console.log("save");
+    } else {
+      top.location = self.location;
+      console.log("unsave");
     }
   </script>
   <meta charset="utf-8" />
