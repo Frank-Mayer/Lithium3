@@ -8,15 +8,10 @@
     }
   </style>
   <script rel="preload">
-    if (self === top) {
+    if (self === top/* && document.location.protocol === "https:"*/) {
       document.documentElement.style.display = "block";
-      console.log("save");
     } else {
-      top.location = self.location;
-      console.log("unsave");
-    }
-    if (document.location.protocol !== "https:") {
-      window.location.href = "./405.html";
+        window.location.href = "./405.html";
     }
   </script>
   <meta charset="utf-8" />

@@ -53,16 +53,17 @@ var cryptography = new class {
   }
 
   async getHash(str) {
-    let x = await this.sha512(str + this.salt);
-    let y = await this.sha512(x);
-    return y;
+    for (let r = 1; r < 5000; r++) {
+      str = await this.sha512(str + this.salt + r.toString());
+    }
+    return str;
   }
 
   async pwdHash(str) {
-    let x = await this.sha512(str + this.salt);
-    let y = await this.sha512(x);
-    let z = await this.sha512(y);
-    return z;
+    for (let r = 1; r < 15000; r++) {
+      str = await this.sha512(str + this.salt + r.toString());
+    }
+    return str;
   }
 
   async digestStr(str) {
