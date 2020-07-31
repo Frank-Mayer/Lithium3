@@ -78,7 +78,8 @@ function init() {
   ["emoji.css",
     "chatsList.css",
     "chats.css",
-    "qr.css"
+    "qr.css",
+    "dropdown.css"
   ].forEach((f) => {
     require("./css/" + f);
   });

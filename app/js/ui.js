@@ -54,7 +54,6 @@ class Ui {
   openQr() {
     chatsView.classList.add("layer2");
     document.getElementById("qrScan").style.setProperty("top", "16px");
-
   }
 
   closeQr() {

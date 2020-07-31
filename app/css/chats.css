@@ -20,6 +20,10 @@
   transition: 0.25s;
 }
 
+.header * {
+  float: left;
+}
+
 .header {
   margin-top: 8px;
   padding: 0;

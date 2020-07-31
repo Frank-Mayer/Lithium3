@@ -1,20 +1,3 @@
-#qrButton {
-  position: absolute;
-  right: 16px;
-  top: 32px;
-}
-
-#qrButton,
-#qrButton svg {
-  width: 25px;
-  height: 25px;
-}
-
-#qrButton svg,
-#qrButton svg * {
-  fill: var(--Accent)
-}
-
 #qrScan {
   position: absolute;
   width: 100%;
@@ -43,6 +26,8 @@
 }
 
 #connectHashTxt {
+  border: none;
+  outline: none;
   text-align: center;
   word-wrap: break-word;
   font-size: 18px;

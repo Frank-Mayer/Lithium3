@@ -12,8 +12,7 @@ var database = new class {
 
 
   msgLoader = void (0);
-
-  defaultImg = 'default.png?alt=media&token=78c7945d-eaea-4324-9dc7-7d8970afcb30';
+  defaultImg = 'default.png';
 
   async createChatList() {
     let newChatHtmlList = new Array();
@@ -27,7 +26,7 @@ var database = new class {
         newChatHtml.classList.add("chatList");
         let img = document.createElement("img");
         img.src = './img/0.png';
-        img.style.backgroundImage = 'url(https://firebasestorage.googleapis.com/v0/b/lithium-03.appspot.com/o/' + snapshot.val().img + ')';
+        img.style.backgroundImage = `url(${await this.getFileUrl(snapshot.val().img)})`;
         img.alt = snapshot.key;
         let b = document.createElement("b");
         b.innerText = snapshot.key;
@@ -42,6 +41,20 @@ var database = new class {
       }
       ui.drawChatList(newChatHtmlList);
     }
+  }
+
+  getFileUrl(filename) {
+    return new Promise((resolve, reject) => {
+      let storage = firebase.storage().ref(filename);
+      storage
+        .getDownloadURL()
+        .then(function (url) {
+          resolve(url);
+        })
+        .catch(function (error) {
+          reject(error);
+        });
+    });
   }
 
   startMsgLoader() {
@@ -156,5 +169,55 @@ var database = new class {
     chatKey = chatKey.sort().join('');
     console.log(JSON.stringify(chatKey));
     return String(chatKey);
+  }
+
+  async updateSettings() {
+    let img = await firebase.database().ref(`usrData/${localDB.usrNam}/img`).once('value');
+    document.getElementById("myImg").src = await this.getFileUrl(img.val());
+  }
+
+  async uploadNewImg() {
+    let input = document.createElement("input");
+    input.style.display = "none";
+    input.type = "file";
+    input.accept = "img/*";
+    document.body.appendChild(input);
+    input.addEventListener("input", (e) => {
+      let file = e.target.files[0];
+      let fileExt = (file.name.split(".").slice(-1)[0]).toLowerCase();
+      if (fileExt !== "jpg" && fileExt !== "png" && fileExt !== "gif") {
+        alert("File format not supported", true);
+        return;
+      }
+      let fileName = localDB.usrNam + "." + fileExt;
+      console.log(fileName);
+      let storage = firebase.storage().ref(fileName);
+      let upload = storage.put(file);
+      upload.on(
+        "state_changed",
+        function progress(snapshot) {
+          var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(percentage);
+        },
+        function error(e) {
+          console.error(e);
+          alert("error uploading file", true);
+        },
+        async function complete() {
+          console.log(`${fileName} upoaded`);
+          let img = await firebase.database().ref(`usrData/${localDB.usrNam}/img`).once('value');
+          if (img !== "default.png") {
+            let desertRef = firebase.storage().ref().child(await database.getFileUrl(img.val()));
+            await desertRef.delete().catch(function (error) {
+              alert("Deleting of olg image failed");
+              console.error(error);
+            });
+          }
+          firebase.database().ref(`usrData/${localDB.usrNam}/img`).set(fileName);
+        }
+      );
+      input.remove();
+    });
+    input.click();
   }
 }

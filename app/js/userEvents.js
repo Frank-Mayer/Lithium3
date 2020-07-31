@@ -44,6 +44,21 @@ class UserEvents {
         setTimeout(async () => { await diffiehellman.init(); }, 1500);
       });
 
+      document.getElementById("settingsButton").addEventListener("click", async () => {
+        require("./css/settings.css");
+        database.updateSettings();
+        chatsView.classList.add("layer2");
+        document.getElementById("settings").style.setProperty("top", "16px");
+      });
+
+      document.getElementById("settingsCloseBtn").addEventListener("click", async () => {
+        chatsView.classList.remove("layer2");
+        document.getElementById("settings").style.setProperty("top", "calc(100% + 50px)");
+      });
+
+      document.getElementById("myImg").addEventListener("click", () => {
+        database.uploadNewImg();
+      })
 
       document.getElementById("fileUpload").addEventListener("input", (event) => {
         cryptography.handleFiles(event);

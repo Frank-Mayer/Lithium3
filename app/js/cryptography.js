@@ -131,17 +131,5 @@ var cryptography = new class {
       firebase.database().ref("msg").push().set(msgPush);
     };
     reader.readAsDataURL(input.files[0]);
-
-
-    // let imgSing = img[0];
-    // console.log(imgSing);
-    // let reader = new FileReader();
-    // reader.onload = (async function () {
-    //   return async function (e) {
-    //     // console.log(String(e.target.result));
-
-    //   };
-    // })();
-    // reader.readAsDataURL(imgSing);
   }
 }
