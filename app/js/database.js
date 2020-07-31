@@ -203,17 +203,11 @@ var database = new class {
           console.error(e);
           alert("error uploading file", true);
         },
-        async function complete() {
+        function complete() {
           console.log(`${fileName} upoaded`);
-          let img = await firebase.database().ref(`usrData/${localDB.usrNam}/img`).once('value');
-          if (img !== "default.png") {
-            let desertRef = firebase.storage().ref().child(await database.getFileUrl(img.val()));
-            await desertRef.delete().catch(function (error) {
-              alert("Deleting of old image failed");
-              console.error(error);
-            });
-          }
-          firebase.database().ref(`usrData/${localDB.usrNam}/img`).set(fileName);
+          firebase.database().ref(`usrData/${localDB.usrNam}/img`).set(fileName).then(() => {
+            database.updateSettings();
+          })
         }
       );
       input.remove();
