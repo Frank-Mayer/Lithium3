@@ -85,7 +85,7 @@ function init() {
 
   // fade out Login Screen
   window.setTimeout(function () {
-    document.getElementById("splashScreen").style.opacity = 0;
+    document.getElementById("splashScreen").style.opacity = "0";
     window.setTimeout(function () {
       document.getElementById("splashScreen").remove();
       clearInterval(registerPasswordCheckInterval);

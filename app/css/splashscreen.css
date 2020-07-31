@@ -136,3 +136,8 @@
   -o-transform: translateY(16px);
   transform: translateY(16px);
 }
+
+#splashLoading {
+  opacity: 0;
+  transition: 500ms;
+}

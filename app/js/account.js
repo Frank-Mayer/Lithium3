@@ -3,13 +3,15 @@
 var account = new class {
   async login() {
     try {
+      document.getElementById("loginControl").style.opacity = "0";
+      document.getElementById("splashLoading").style.opacity = "1";
       document.getElementById("loginBtn").disabled = true;
       let userName = document.getElementById("userName").value;
       let pwd = document.getElementById("password").value;
       let h = await cryptography.getHash(userName + pwd);
       let email = await this.getMailFromUsername(userName);
       await firebase.auth().signInWithEmailAndPassword(email, h).catch(function (error) {
-        throw error.message;
+        throw "Login failed";
       });
       let snapshot = await firebase.database().ref('usrHash/' + userName).once('value');
       if (h === snapshot.val()) {
@@ -29,6 +31,8 @@ var account = new class {
       alert(error, true);
       ui.loginError();
       document.getElementById("loginBtn").disabled = false;
+      document.getElementById("loginControl").style.opacity = "1";
+      document.getElementById("splashLoading").style.opacity = "0";
     }
     finally {
       return;
@@ -37,6 +41,8 @@ var account = new class {
 
   async register() {
     try {
+      document.getElementById("loginControl").style.opacity = "0";
+      document.getElementById("splashLoading").style.opacity = "1";
       document.getElementById("loginBtn").disabled = true;
       let userName = document.getElementById("userName").value;
       let pwd = document.getElementById("password").value;
@@ -44,10 +50,10 @@ var account = new class {
       let email = await cryptography.digestStr(userName) + '@lithium-03.firebaseio.com';
       // let email = userName + '@lithium-03.firebaseio.com';
       await firebase.auth().createUserWithEmailAndPassword(email, h).catch(function (error) {
-        throw error.message;
+        throw "Registration failed";
       });
       await firebase.auth().signInWithEmailAndPassword(email, h).catch(function (error) {
-        throw error.message;
+        throw "Registration failed";
       });
 
       let snapshot = await firebase.database().ref('usrHash/' + userName).once('value');
@@ -73,6 +79,8 @@ var account = new class {
       alert(error.replace("email address", "username"), true);
       ui.loginError();
       document.getElementById("loginBtn").disabled = false;
+      document.getElementById("loginControl").style.opacity = "1";
+      document.getElementById("splashLoading").style.opacity = "0";
     }
     finally {
       return;
