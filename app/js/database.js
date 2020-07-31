@@ -209,7 +209,7 @@ var database = new class {
           if (img !== "default.png") {
             let desertRef = firebase.storage().ref().child(await database.getFileUrl(img.val()));
             await desertRef.delete().catch(function (error) {
-              alert("Deleting of olg image failed");
+              alert("Deleting of old image failed");
               console.error(error);
             });
           }
