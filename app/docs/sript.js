@@ -51,9 +51,9 @@ function scr(id) {
 
 function setHash(str) {
   if (history.pushState) {
-    history.pushState(null, null, '#' + str);
+    history.replaceState(undefined, undefined, "#" + str);
   }
   else {
-    location.hash = '#' + str;
+    history.replaceState(undefined, undefined, "#" + str);
   }
 }
