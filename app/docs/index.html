@@ -88,13 +88,14 @@
       <ul>
         <h2>Contents</h2>
         <li onclick='scr("register")'>Registration</li>
-        <li onclick='scr("login")'>Login</li>
         <li onclick='scr("keyExchange")'>Key exchange</li>
-        <li onclick='scr("encryption")'>Message encryption</li>
+        <li onclick='scr("encryption")'>Encryption</li>
+        <li onclick='scr("feedback")'>Feedback messages</li>
       </ul>
       <div id="register">
         <br />
         <hr />
+        <br />
         <br />
         <h2>Registration</h2>
         <br />
@@ -135,16 +136,73 @@
         <div>
           <h3>Write new account to the database</h3>
           <p>
-            A doubled SHA-512 hash is created using a combination of your
+            A 15000 timed SHA-512 hash is created using a combination of your
             username, password and a random salt. The salt comes from the
             database and is used to safeguard passwords in storage by increasing
             the amount of entropy.
           </p>
         </div>
       </div>
-      <div id="login"></div>
+
       <div id="keyExchange">
-        <div id="encryption"></div>
+        <br />
+        <hr />
+        <br />
+        <br />
+        <h2>Key Exchange</h2>
+        <br />
+        <div>
+          <h3>Diffie-Hellman</h3>
+          <p>
+            By klicking on "Create new chat" in the Menu, a Diffie-Hellman Key
+            Exchange will be initialized. The client calculates public and
+            private parameters for the exchange. Then the public parameters are
+            passed on as a Base64 encoded JSON-Object to the other user with
+            whom you want to start the chat. The transfer takes place via a
+            QR-Code or a simple link. The first client then waits for response
+            from the second client, by listening to the database.
+          </p>
+          <p>
+            After the key exchange, the entry is deleted from the database.
+          </p>
+        </div>
+      </div>
+
+      <div id="encryption">
+        <br />
+        <hr />
+        <br />
+        <br />
+        <h2>Encryption</h2>
+        <br />
+        <div>
+          <h3>AES-256</h3>
+          <p>
+            Every chat has a randomly generated password. Both chat participants
+            have a copy of this password in their directory on the database.
+            This copy is encrypted with the hash of the own user password. We
+            use tripled AES-256 encryption.
+          </p>
+        </div>
+      </div>
+
+      <div id="feedback">
+        <br />
+        <hr />
+        <br />
+        <br />
+        <h2>Feedback messages</h2>
+        <br />
+        <div>
+          <p>
+            The messages that are passed on to the client are intentionally very
+            vague. This is to give a possible attacker as little feedback as
+            possible.
+          </p>
+          <p>
+            This level of information should be enough for the normal user.
+          </p>
+        </div>
       </div>
     </div>
 
