@@ -112,8 +112,8 @@
         <div>
           <h3>Password</h3>
           <p>
-            The password is first checked to see if it is eight digits long. If
-            this is the case, a request is sent to the API of
+            The password is first checked to see if it is at least eight digits
+            long. If this is the case, a request is sent to the API of
             <a href="https://haveibeenpwned.com">haveibeenpwned.com</a> whether
             the password is listed there or not.
           </p>
@@ -125,7 +125,7 @@
           <p>
             For this purpose, the first five characters of the SHA-1 hash of
             your chosen password are sent, the server then returns every hash
-            startig with the given five characters, which then will be compared
+            starting with the given five characters, which then will be compared
             to the hash of the password entered by the user.
           </p>
           <p>
